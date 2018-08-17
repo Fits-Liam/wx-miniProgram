@@ -23,6 +23,5 @@
 
 | 类别 | 说明            |
 | -------- | ------------------ |
-| AppID | wx51532d43831496fd |
-| AppSecret | 1a5e9be7d2f047669e25db52fb12d820 |
+
 | API 地址 | https://docs.leapoon.com | 
