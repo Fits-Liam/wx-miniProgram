@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "海外项目",
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

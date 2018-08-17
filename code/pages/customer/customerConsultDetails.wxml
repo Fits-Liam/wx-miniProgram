@@ -1,0 +1,64 @@
+<view class="userinfo-section">
+    <view class="guest-card">
+        <view class="guest-card__avatar" bindtap="toSubpage" data-path="customerGuestDetails" data-id="{{consultData.customer_wx_id}}">
+            <image class="avatar avatar_md" src="{{consultData.headimgurl}}"></image>
+        </view>
+        <view class="guest-card__info">
+            <view class="guest-card__record">{{consultData.username}}提交了新信息</view>
+            <view class="guest-card__row">
+                <view class="guest-card__meta">提交时间：{{consultData.created_at}}</view>
+            </view>
+        </view>
+        <view class="guest-card__action">
+            <!-- <view class="guest-card__btn" wx:if="{{consultData.customer_mobile}}">
+                <view class="ui-icon ui-icon-phone" bindtap="callPhone" data-number="{{consultData.customer_mobile}}"></view>
+            </view> -->
+            <view class="guest-card__btn">
+                <view class="ui-icon ui-icon-chat" bindtap="startChat" data-id="{{consultData.customer_wx_id}}" data-name="{{consultData.username}}"></view>
+            </view>
+        </view>
+    </view>
+    <view class="userinfo-item">
+        <view class="userinfo-item__title">联系信息</view>
+        <view class="userinfo-item__cell">
+            <view class="userinfo-item__label">客户姓名：</view>
+            {{consultData.username}}
+        </view>
+        <view class="userinfo-item__cell">
+            <view class="userinfo-item__label">联系手机：</view>
+            {{consultData.mobile}}
+        </view>
+    </view>
+    <view class="userinfo-item">
+        <view class="userinfo-item__title">意向内容</view>
+        <view class="userinfo-item__cell" wx:if="{{consultData.content}}">{{consultData.content}}</view>
+        <view class="userinfo-item__cell" wx:else>-</view>
+    </view>
+    <view class="userinfo-item">
+        <view class="userinfo-item__title">留言</view>
+        <view class="userinfo-item__cell" wx:if="{{consultData.message}}">{{consultData.message}}</view>
+        <view class="userinfo-item__cell" wx:else>-</view>
+    </view>
+    <view class="userinfo-item">
+        <view class="userinfo-item__title">来源</view>
+        <view class="userinfo-item__cell">
+            <block wx:if="{{consultData.by_way==0}}">服务意向</block>
+            <block wx:elif="{{consultData.by_way==1}}">文章列表</block>
+            <block wx:elif="{{consultData.by_way==2}}">问卷表单</block>
+            <block wx:else>未知来源请检查</block>
+        </view>
+    </view>
+</view>
+
+<!-- <view class="userinfo-expand">
+    <view class="guest-info">
+        <view class="guest-info__cell">
+            <view class="guest-info__col">跟进顾问：未分配</view>
+            <view class="guest-info__col">进度更新：未分配</view>
+        </view>
+        <view class="guest-info__cell2">
+            <view>最近一次回访记录：</view>
+            <view>文章“虎妈自述 | 是什么送我的孩子进了哈佛和耶鲁？” 提交表单</view>
+        </view>
+    </view>
+</view> -->

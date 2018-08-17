@@ -1,0 +1,42 @@
+<view class="m-tabs">
+    <view class="m-tabs__average">
+        <view class="m-tabs__tab {{ tabType == 1 ? 'is-active' : ''}}" bindtap="switchArtical" data-type="1">项目介绍</view>
+        <view class="m-tabs__tab {{ tabType == 2 ? 'is-active' : ''}}" bindtap="switchArtical" data-type="2">资讯分享</view>
+    </view>
+</view>
+
+<view class="m-tabs-content">
+    <view wx:if="{{ tabType == 1 }}">
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_01.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_02.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_03.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_04.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_05.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_06.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_07.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_08.png" style="width: 750rpx; height: 600rpx;"></image>
+        <image src="http://palmr2pu7.bkt.clouddn.com/web_front/edu_art/art_09.png" style="width: 750rpx; height: 444rpx;"></image>
+    </view>
+    <view class="bg-white ph-3" wx:if="{{ tabType == 2 }}">
+        <scroll-view scroll-y="true" bindscrolltolower="bindDownLoad" bindscroll="scroll" scroll-top="{{scrollTop}}" style="height:{{winHeight}}px;"  >
+			<view wx:for="{{artical_info}}" wx:key="{{item.city_id}}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}" class="edu-item-contain bdb-ebe"  bindtap="goWebview">
+				<view style="background: url({{ item.share_img }}) no-repeat;background-size:100% 100%;" class="edu-item-img in-block bdr_com"></view>
+				<view class='edu-item-desc in-block'>
+					<view class="cl-333 edu-item-desct font30">{{ item.title }}</view>
+					<view class="cl-999 font26 edu-item-descb">
+						<text class="in-block icon-date_grey">{{ item.publish_time }}</text>
+						<text class="in-block icon-read_grey">{{ item.pv }}</text>
+						<image  wx:if="{{ userRole == 'consult' }}" data-id="{{ item.id }}" data-index="{{ index }}" src="{{ item.favorite_id == null ? '../../images/uncollect.png' : '../../images/collected.png' }}" class="layput_collect" catchtap="collect_artical"></image>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+    </view>
+</view>
+
+<view class="m-bottom-bar" wx:if="{{ userRole == 'customer' }}">
+    <view class="m-bottom-bar__main" bindtap="toPage" data-path="profile/myConsults">
+        <image class="m-bottom-bar__icon" src="../../images/profile/icon_chat.png"></image>
+        意向咨询
+    </view>
+</view>

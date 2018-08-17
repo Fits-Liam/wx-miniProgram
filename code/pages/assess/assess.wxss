@@ -1,0 +1,33 @@
+.assess-section {
+	padding: 30rpx 0;
+}
+.assess-item {
+	width: 690rpx;
+	margin: 0 auto 40rpx auto;
+	border-radius: 8rpx;
+	box-shadow: 0 17rpx 27rpx rgba(112, 112, 112, .17);
+	line-height: 1;
+	overflow: hidden;
+}
+.assess-item:last-child{
+	margin-bottom: 0;
+}
+.assess-item__img{
+	width: 690rpx; height: 246rpx;
+	vertical-align: top;
+}
+.assess-item__desc {
+	position: relative;
+	background-color: #fff;
+	padding: 18rpx 20rpx;
+}
+.assess-item__rec{
+	display: flex; align-items: center; justify-content: center;
+	position: absolute; right: 0; top: 0; bottom: 0;
+	width: 230rpx;
+	background-color: #25A0D2;
+	color: #fff;
+}
+.assess-item__icon{
+	margin-right: 6rpx;
+}

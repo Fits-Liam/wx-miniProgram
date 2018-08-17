@@ -1,0 +1,151 @@
+.activity-contain {
+	margin-top: 100rpx;
+	padding: 0rpx 30rpx 30rpx 30rpx;
+	/* min-height: 276rpx; */
+}
+
+.act_nav {
+	border-top: 1rpx solid transparent;
+	margin-top: 15rpx;
+	padding: 0 60rpx 0 30rpx;
+	color:#6B6B6B;
+	overflow-x: hidden;
+	white-space:nowrap;
+	box-sizing: border-box;
+	min-height: 80rpx;
+}
+
+.act_navitem { 
+	border-bottom: 2px solid transparent;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 20rpx 25rpx;
+	text-align: center;
+	transform: scale(0.9);
+	transition: all 0.2s;
+}
+
+.navitem_active {
+	transform: scale(1);
+	color: #2CC3CE;
+	border-bottom: 2px solid #2CC3CE;
+	font-weight: bold;
+}
+
+
+.search-item {
+	width: 690rpx;
+	height: 270rpx;
+	border-radius: 20rpx 20rpx 0 0;
+	/* margin-top: 30rpx; */
+}
+
+.serch-item_desc {
+	width: 690rpx;
+	height: 130rpx;
+	border-radius: 0 0 20rpx 20rpx;
+	padding: 20rpx;
+}
+
+.text-hidden {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.swtich_key {
+	padding:30rpx 30rpx 30rpx 60rpx;
+	margin-top: 13rpx;
+	display: block;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* 下拉标签 */
+.m-tabs{
+	border-top: 15rpx solid #f2f2f2;
+}
+.filter-area{
+	padding:40rpx 30rpx;
+	font-size: 0;
+}
+.filter-area__item{
+	padding-bottom: 26rpx;
+	font-size: 28rpx; color: #333; text-align: center;
+}
+.filter-area__city{
+	display: flex; flex-wrap: wrap; justify-content: space-between;
+}
+.filter-area__tag{
+	width: 151rpx; height: 64rpx; line-height: 64rpx;
+	margin-bottom: 26rpx;
+	background-color: #EAEAEA;
+	border-radius: 10rpx;
+}
+.filter-area__tag.is-active{
+	background-color: #2CC3CE;
+	color: #fff;
+}
+.fixed_nav{
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+}
+
+.edu-item-contain {
+	padding: 30rpx 0;
+}
+
+.edu-item-img {
+	width: 232rpx;
+	height: 168rpx;
+	border-radius: 8rpx;
+}
+
+.edu-item-desc {
+	width: 66%;
+	padding-left: 30rpx;
+}
+
+.edu-item-desct {
+	line-height: 44rpx;
+}
+
+.edu-item-descb {
+	margin-top: 30rpx;
+}
+
+.act_nav {
+	border-top: 1rpx solid transparent;
+	margin-top: 15rpx;
+	color:#6B6B6B;
+	overflow-x: hidden;
+	white-space:nowrap;
+	box-sizing: border-box;
+	min-height: 80rpx;
+}
+
+.act_navitem { 
+	border-bottom: 2px solid transparent;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 20rpx 25rpx;
+	text-align: center;
+	transform: scale(0.9);
+	transition: all 0.2s;
+	width:50%;
+}
+
+.navitem_active {
+	transform: scale(1);
+	color: #2CC3CE;
+	font-weight: bold;
+	border-bottom: 2px solid #2CC3CE;
+}
+
+.layput_collect {
+	width:37rpx;
+	height:37rpx;
+	float:right;
+	margin-right: 10rpx;
+}

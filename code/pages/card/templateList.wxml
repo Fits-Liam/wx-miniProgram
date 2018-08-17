@@ -1,0 +1,24 @@
+<scroll-view style="height: {{scrollHeight}}px;" scroll-y bindscrolltolower="bindDownLoad" enable-back-to-top="true">
+    <view class="template-list">
+        <view class="template-item" wx:for="{{templateInfo.data}}" wx:key="{{item.id}}" bindtap="goTemplateDetails" data-id="{{item.id}}">
+            <view class="template-item__name">{{item.name}}</view>
+            <view class="template-item__time">创建时间：{{item.created_at}}</view>
+            <view class="ui-icon ui-icon-arrow_right template-item__arrow"></view>
+        </view>
+    </view>
+    <view class="m-empty" wx:if="{{templateInfo.total == 0}}">
+        当前模板为空
+    </view>
+    <!-- 提示 -->
+    <view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+        <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+        <view class="m-loading__line"></view>
+    </view>
+</scroll-view>
+
+<!-- 底部操作 -->
+<view class="m-bottom-bar">
+    <view class="m-bottom-bar__main" bindtap="creatTemplates">添加名片模板</view>
+</view>

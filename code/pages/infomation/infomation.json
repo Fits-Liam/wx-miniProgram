@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "全部资讯",
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

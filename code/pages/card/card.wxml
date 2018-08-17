@@ -1,0 +1,96 @@
+<view class="card">
+	<view class="card-consult">
+		<view class="card-consult__avatar" bindtap="toWebviewNormal">
+            <image class="avatar" src="{{consultInfo.headimgurl ? consultInfo.headimgurl : '../../images/def_avatar.png'}}"></image>
+            <image class="card-consult__edit" src="../../images/customer/icon_edit.png" wx:if="{{userRole != 'customer'}}"></image>
+		</view>
+		<view class="card-consult__info">
+    		<view class="card-consult__name" wx:if="{{consultInfo.mg_name}}">{{consultInfo.mg_name}}</view>
+    		<view class="card-consult__title">{{consultInfo.dpt2_name}}</view>
+            <!-- <view class="card-consult__title">{{consultInfo.dpt1_name}}-{{consultInfo.dpt2_name}}</view> -->
+		</view>
+		<view class="card-consult__action">
+			<view class="card-consult__btn" wx:if="{{consultInfo.mg_phone && userRole == 'customer'}}">
+                <view class="ui-icon ui-icon-phone" bindtap="callPhone" data-number="{{consultInfo.mg_phone}}"></view>
+            </view>
+            <view class="card-consult__btn" wx:if="{{userRole != 'customer'}}">
+				<view class="ui-icon ui-icon-favorite" bindtap="toPage" data-path="collectArtical/collectArtical"></view>
+			</view>
+			<view class="card-consult__btn">
+				<view class="ui-icon ui-icon-chat" bindtap="startChat" data-id="{{consultInfo.wx_id}}" data-name="{{consultInfo.mg_name}}" data-role="{{userRole}}"></view>
+			</view>
+		</view>
+        <!-- 在线状态：只有客服能显示 -->
+        <view class="card-consult__status {{adviser.online_status==0?'is-offline':''}}" wx:if="{{userRole == 'customer_service'}}" bindtap="changeOnlineStatus">切换在线状态</view>
+	</view>
+    <view class="card-desc" wx:if="{{consultInfo.brief_desc}}">
+        {{consultInfo.brief_desc}}
+    </view>
+</view>
+<view class="card-info">
+    <view class="card-info__more" bindtap="getMoreInfo">
+        查看全部资料<image class="card-info__icon {{ showMore ? 'is-active' : '' }}" src="../../images/customer/icon_expand.png"></image>
+    </view>
+    <view class="card-info__expand" wx:if="{{showMore}}">
+        <view class="card-cell">
+            <view class="card-cell__label">工作手机</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.mg_phone}}">{{consultInfo.mg_phone}}</view>
+        </view>
+        <view class="card-cell">
+            <view class="card-cell__label">微信号</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.wx_no}}">{{consultInfo.wx_no}}</view>
+        </view>
+        <view class="card-cell">
+            <view class="card-cell__label">邮箱</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.email}}">{{consultInfo.email}}</view>
+        </view>
+        <view class="card-cell">
+            <view class="card-cell__label">所在地</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.city}}">{{consultInfo.city}}</view>
+        </view>
+		<view class="card-cell">
+            <view class="card-cell__label">简介</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.brief_desc}}">{{consultInfo.brief_desc}}</view>
+        </view>
+    </view>
+</view>
+
+<!-- 模板管理 -->
+<view class="card-action" wx:if="{{userRole != 'customer'}}">
+    <button class="ui-btn ui-btn_primary card-action__btn" bindtap="toTemplateList">模板管理</button>
+</view>
+
+<!-- 顾问推荐 -->
+<view class="card-post" wx:if="{{templateArticle}}">
+    <view class="card-post__title">
+    	<view class="ui-icon ui-icon-italic"></view> 顾问推荐 <view class="ui-icon ui-icon-italic"></view>
+    </view>
+    <view class="m-article-item"
+        wx:for="{{templateArticle.template_articles}}"
+        wx:key="{{item.id}}"
+        bindtap="toWebview"
+        data-url="{{item.link_url}}"
+        data-title="{{item.title}}"
+        data-img="{{item.share_img}}"
+        data-id="{{item.id}}">
+        <view class="m-article-item__thumb">
+            <image class="m-article-item__img" src="{{item.share_img}}" mode="aspectFill"></image>
+        </view>
+        <view class="m-article-item__content">
+            <view class="m-article-item__title">{{item.title}}</view>
+            <view class="m-article-item__meta">
+                <view class="m-article-item__tag">
+                    <view class="ui-icon ui-icon-time_gary"></view>{{item.publish_time}}
+                </view>
+                <view class="m-article-item__tag">
+                    <view class="ui-icon ui-icon-view_gary"></view>{{item.pv}}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 底部导航 -->
+<view class="m-bottom-nav">
+    <fix-bottom-nav role-tag="{{userRole}}" page-tag="{{pageId}}" msg-tips="{{msgTips}}"></fix-bottom-nav>
+</view>

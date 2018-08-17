@@ -1,0 +1,44 @@
+@import "common/customer.wxss";
+
+/* = Customer Card
+------------------------------------------------------------------------------------ */
+.customer-card{
+    position: relative;
+    width: 100%; height: 320rpx;
+    margin-bottom: 15rpx;
+    color: #fff; line-height: 1; text-align: center;
+    overflow: hidden;
+}
+.customer-card__bg{
+    width: 100%; height: 404rpx;
+}
+.customer-card__cell{
+    display: flex; align-items: center; justify-content: space-around;
+    position: absolute; left: 0; right: 0; bottom: 60rpx;
+}
+.customer-card__num{
+    margin-bottom: 20rpx;
+    font-size: 60rpx; font-weight: 700;
+}
+.customer-card__type{
+    font-size: 26rpx;
+}
+.customer-card__statistics{
+    position: absolute; bottom: 200rpx; right: 0;
+    width: 153rpx; height: 54rpx;
+}
+
+/* = Customer Section
+------------------------------------------------------------------------------------ */
+.customer-section{
+    background-color: #fff;
+}
+.customer-section .m-tabs-title{
+    padding-left: 30rpx; padding-right: 30rpx;
+}
+.customer-section .m-article-item{
+    padding: 30rpx 0; margin: 0 30rpx;
+}
+.customer-section .guest-item{
+    margin: 0 30rpx;
+}

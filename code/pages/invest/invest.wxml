@@ -1,0 +1,30 @@
+
+
+<view class="m-tabs fixed_nav flex-row flex-row-bet">
+	<view class="m-tabs__tab {{ item.id == active_tag ? 'is-active' : ''}}" wx:for="{{ invest_item }}" wx:key="{{ item.id }}" bindtap="switchCity" data-id="{{item.id}}">
+			{{item.tag_name}}
+	</view>
+</view>
+
+<view class="relative">
+	<view wx:if="{{articalList == ''}}" class="activity-contain">
+		<view  class="font24 cl-999 text-center search_none_contain">
+			<image src="../../images/box-display.png" class="search_none_image_box"></image>
+			<view class="font26 cl-999 search_none_desc">暂无此区域信息哦~</view>
+		</view>
+	</view>
+
+	<scroll-view wx:else scroll-y="true" class="activity-contain bg-white" style="box-sizing:border-box;">
+		<view class="edu-item-contain bdb-ebe" wx:for="{{articalList}}" wx:key="{{item.city_id}}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"   bindtap="goWebview">
+			<view style="background: url({{ item.share_img }}) no-repeat;background-size:100% 100%;" class="edu-item-img in-block bdr_com"></view>
+			<view class='edu-item-desc in-block'>
+				<view class="cl-333 edu-item-desct font30">{{ item.title }}</view>
+				<view class="cl-999 font26 edu-item-descb">
+					<text class="in-block icon-date_grey">{{ item.publish_time }}</text>
+					<text class="in-block icon-read_grey">{{ item.pv }}</text>
+					<image data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ userRole != 'customer' }}" src="{{ item.favorite_id == null ? '../../images/uncollect.png' : '../../images/collected.png' }}" class="layput_collect" catchtap="collect_artical"></image>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+</view>

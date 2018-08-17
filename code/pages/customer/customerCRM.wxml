@@ -1,0 +1,72 @@
+<form class="crm-form" bindsubmit="bindSubmitCrm">
+    <view class="crm-form__item">
+        <view class="crm-form__hd">客户姓名：</view>
+        <view class="crm-form__bd">
+            <input class="crm-form__input" name="username" value="{{baseInfo.username}}"/>
+        </view>
+    </view>
+    <view class="crm-form__item">
+        <view class="crm-form__hd">联系方式：</view>
+        <view class="crm-form__bd">
+            <picker bindchange="bindPickerContact" value="{{contactIndex}}" range-key="name" range="{{contactObject}}">
+                <view class="crm-form__picker">
+                    {{contactObject[contactIndex].name}}
+                </view>
+            </picker>
+            <input class="crm-form__input" name="contact_value" value="{{baseInfo.mobile}}"/>
+        </view>
+    </view>
+    <view class="crm-form__item">
+        <view class="crm-form__hd crm-form__hd_mini">客户性别：</view>
+        <view class="crm-form__bd">
+            <radio-group name="gender">  
+                <label><radio value="1"/>男</label>
+                <label><radio value="0"/>女</label>
+            </radio-group>
+        </view>
+    </view>
+    <view class="crm-form__item">
+        <view class="crm-form__hd">客户分类：</view>
+        <view class="crm-form__bd">
+            <picker bindchange="bindPickerType" value="{{typeIndex}}" range="{{typeObject}}">
+                <view class="crm-form__picker {{ typeIndex == 0 ? 'is-active' : '' }}">
+                    {{typeObject[typeIndex]}}
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class="crm-form__item">
+        <view class="crm-form__hd">意向国家：</view>
+        <view class="crm-form__bd">
+            <picker bindchange="bindPickerCountry" value="{{countryIndex}}" range="{{countryObject}}">
+                <view class="crm-form__picker {{ countryIndex == 0 ? 'is-active' : '' }}">
+                    {{countryObject[countryIndex]}}
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class="crm-form__item" wx:if="{{ userRole == 'partner' }}">
+        <view class="crm-form__hd">选择顾问：</view>
+        <view class="crm-form__bd">
+            <picker bindchange="bindPickerConsultant" value="{{consultantIndex}}" range-key="name" range="{{consultantObject}}">
+                <view class="crm-form__picker {{ consultantIndex == 0 ? 'is-active' : '' }}">
+                    {{consultantObject[consultantIndex].name}}
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class="crm-form__action">
+        <button class="ui-btn ui-btn_primary" formType="submit">确认</button>
+    </view>
+</form>
+
+<view class="m-modal" wx:if="{{modalDisplay}}">
+    <view class="m-modal__main">
+        <view class="m-modal__hd">{{modalMsg}}</view>
+        <!-- <view class="m-modal__bd">{{modalMsg}}</view> -->
+        <view class="m-modal__ft">
+            <view class="m-modal__btn" bindtap="closeModal">确认</view>
+        </view>
+        <image class="m-modal__close" bindtap="closeModal" src="../../images/icon_close.png" bindtap="closeModal"></image>
+    </view>
+</view>

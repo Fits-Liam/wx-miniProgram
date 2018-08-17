@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "留学教育",
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

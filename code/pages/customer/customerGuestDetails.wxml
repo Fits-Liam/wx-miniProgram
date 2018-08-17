@@ -1,0 +1,181 @@
+<view class="customer-details">
+    <view class="guest-list">
+        <view class="guest-card">
+            <view class="guest-card__avatar">
+                <image class="avatar" src="{{customerInfo.headimgurl}}"></image>
+            </view>
+            <view class="guest-card__info">
+                <view class="guest-card__name">{{customerInfo.nickname}}</view>
+            </view>
+            <view class="guest-card__action">
+                <!-- <view class="guest-card__btn" wx:if="{{customerInfo.mobile}}">
+                    <view class="ui-icon ui-icon-phone" bindtap="callPhone" data-number="{{customerInfo.mobile}}"></view>
+                </view> -->
+                <view class="guest-card__btn">
+                    <view class="ui-icon ui-icon-chat" bindtap="startChat" data-id="{{customerInfo.customer_wx_id}}" data-name="{{customerInfo.nickname}}"></view>
+                </view>
+            </view>
+        </view>
+        <!-- 基本信息  -->
+        <view class="guest-info">
+            <view class="guest-info__cell">
+                <view class="guest-info__col">首次访问：{{customerInfo.first_view_at}}</view>
+            </view>
+            <view class="guest-info__cell">
+                <view class="guest-info__col">最近访问：{{customerInfo.last_view_at}}</view>
+            </view>
+            <view class="guest-info__cell">
+                <view class="guest-info__col">客户来源：
+                    <block wx:if="{{customerInfo.by_way}}">{{customerInfo.by_way}}</block>
+                    <block wx:else>-</block>
+                </view>
+            </view>
+            <view class="guest-info__cell">
+                <view class="guest-info__col">
+                    <black wx:if="{{customerInfo.view_count}}">访问次数：{{customerInfo.view_count}}次</black>
+                    <black wx:else>访问次数：0</black>
+                </view>
+                <view class="guest-info__col">
+                    <black wx:if="{{customerInfo.avg_stay_minutes}}">平均停留时长：{{customerInfo.avg_stay_minutes}}分钟</black>
+                    <black wx:else>平均停留时长：0分钟</black>
+                </view>
+            </view>
+        </view>
+        <!-- 提交信息  -->
+        <view class="guest-info">
+            <view class="guest-info__hd" bindtap="getSubmitList">
+                <view class="guest-info__title">
+                    <black wx:if="{{customerInfo.submit_info_times}}">提交信息 {{customerInfo.submit_info_times}} 次</black>
+                    <black wx:else>提交信息 0 次</black>
+                </view>
+                <view class="guest-info__more" wx:if="{{customerInfo.submit_info_times}}">
+                    查看信息<image class="guest-info__icon {{ customerSubmitList ? 'is-active' : '' }}" src="../../images/customer/icon_expand.png"></image>
+                </view>
+            </view>
+            <view class="guest-info__bd" wx:if="{{customerSubmitList}}">
+                <view class="guest-info__expand" wx:for="{{customerSubmitList}}" wx:key="id">
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">客户姓名：{{item.username}}</view>
+                        <view class="guest-info__col">客户手机：{{item.mobile}}</view>
+                    </view>
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">
+                            更新来源：
+                            <block wx:if="{{item.article_title}}">{{item.article_title}}</block>
+                            <block wx:else>-</block>
+                        </view>
+                    </view>
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">
+                            <block wx:if="{{item.staff_username}}">跟进顾问：{{item.staff_username}}</block>
+                            <block wx:else>跟进顾问：未分配</block>
+                        </view>
+                        <view class="guest-info__col">
+                            进度更新：{{item.crm_status}}
+                        </view>
+                    </view>
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">
+                            最近回访记录：
+                            <block wx:if="{{item.crm_last_interview_at}}">{{item.crm_last_interview_at}}</block>
+                            <block wx:else>-</block>
+                        </view>
+                    </view>
+					<view class="guest-info__cell">
+                        <view class="guest-info__col">
+                            最近回访内容：
+                            <block wx:if="{{item.crm_last_interview_content}}">{{item.crm_last_interview_content}}</block>
+                            <block wx:else>-</block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 自测评估  -->
+        <view class="guest-info">
+            <view class="guest-info__hd" bindtap="getAssessList">
+                <view class="guest-info__title">
+                    <black wx:if="{{customerInfo.assess_times}}">自测评估 {{customerInfo.assess_times}} 次</black>
+                    <black wx:else>自测评估 0 次</black>
+                </view>
+                <view class="guest-info__more" wx:if="{{customerInfo.assess_times}}">
+                    查看信息<image class="guest-info__icon {{ customerAssessList ? 'is-active' : '' }}" src="../../images/customer/icon_expand.png"></image>
+                </view>
+            </view>
+            <view class="guest-info__bd" wx:if="{{customerAssessList}}">
+                <view class="guest-info__expand" wx:for="{{customerAssess}}" wx:key="title">
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">评　　测：{{item.questionnaire_title}}</view>
+                    </view>
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">完成时间：{{item.created_at}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 阅读文章  -->
+        <view class="guest-info">
+            <view class="guest-info__hd" bindtap="getArticleList">
+                <view class="guest-info__title">
+                    <black wx:if="{{customerInfo.view_article_count}}">阅读文章 {{customerInfo.view_article_count}} 篇</black>
+                    <black wx:else>阅读文章 0 篇</black>
+                </view>
+                <view class="guest-info__more" wx:if="{{customerInfo.view_article_count}}">
+                    查看信息<image class="guest-info__icon {{ customerArticleList ? 'is-active' : '' }}" src="../../images/customer/icon_expand.png"></image>
+                </view>
+            </view>
+            <view class="guest-info__bd" wx:if="{{customerArticleList}}">
+                <view class="guest-info__expand" wx:for="{{customerView}}" wx:key="title">
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">
+                            文　　章：
+                            <view class="guest-info__extra">{{item.title}}</view>
+                        </view>
+                    </view>
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">阅读次数：{{item.view_count}} 次</view>
+                    </view>
+                    <view class="guest-info__cell">
+                        <view class="guest-info__col">完成时间：{{item.last_view_at}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 拨打电话  -->
+        <view class="guest-info">
+            <view class="guest-info__hd">
+                <view class="guest-info__title">
+                    <black wx:if="{{customerInfo.call_times}}">拨打电话 {{customerInfo.call_times}} 次</black>
+                    <black wx:else>拨打电话 0 次</black>
+                </view>
+            </view>
+        </view>
+        <!-- 最近一次聊天  -->
+        <view class="guest-info">
+            <view class="guest-info__hd">
+                <view class="guest-info__title">
+                    最近一次聊天
+                </view>
+            </view>
+            <view class="guest-info__bd">
+                <view class="guest-info__cell">
+                    <view class="guest-info__col">
+                        <black wx:if="{{customerInfo.last_message_at}}">聊天时间：{{customerInfo.last_message_at}}</black>
+                        <black wx:else>聊天时间：-</black>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-bottom-bar">
+    <view class="m-bottom-bar__main">
+        <view wx:if="{{userRole == 'partner'}}" class="m-bottom-bar__btn" catchtap="toPage" data-type="partner" data-path="recommend/recommend" data-id="{{customerInfo.customer_wx_id}}">
+            <image class="m-bottom-bar__icon" src="../../images/customer/icon_rcmd_ghost.png"></image>推荐顾问
+        </view>
+        <view class="m-bottom-bar__btn" bindtap="toSubpage" data-path="customerCRM" data-id="{{customerInfo.customer_wx_id}}">
+            <image class="m-bottom-bar__icon" src="../../images/customer/icon_uplpad.png"></image>录入CRM
+        </view>
+    </view>
+</view>

@@ -1,0 +1,40 @@
+<view class="fixBottomNav flex-row absolute bottom-0 left-0 wd-100 flex-row-around font24 flex-valign-center index-item_default text-center">
+	<!-- 公共菜单 -->
+	<view class="flex-item-avg" hover-class="none" bindtap="toPage" data-path="index" data-self="{{pageTag}}">
+		<view class="index_nav {{pageTag == 'index'?'icon-index_active' : 'icon-index_default'}}"></view>
+		<text class="{{pageTag == 'index'?'index-item_active':''}}">首页</text>
+	</view>
+
+	<view class="flex-item-avg" hover-class="none" bindtap="toPage" data-path="assess" data-self="{{pageTag}}">
+		<view class="index_nav {{pageTag == 'assess'?'icon-assess_active' : 'icon-assess_default'}}"></view>
+		<text class="{{pageTag == 'assess'?'index-item_active':''}}">评估</text>
+	</view>
+
+	<view class="flex-item-avg" hover-class="none" bindtap="toPage" data-path="message" data-self="{{pageTag}}">
+		<view class="index_nav {{pageTag == 'message'?'icon-msg_active' : 'icon-msg_default'}}">
+			<view wx-if="{{msgTips}}" class="msg_tips"></view>
+		</view>
+		<text class="{{pageTag == 'message'?'index-item_active ':''}}">消息</text>
+	</view>
+	
+	<!-- 客户显示 -->
+	<block wx-if="{{ roleTag == 'customer' }}">
+		<view class="flex-item-avg" hover-class="none" bindtap="toPage" data-path="profile" data-self="{{pageTag}}">
+			<view class="index_nav {{pageTag == 'profile' ? 'icon-personal_active' : 'icon-personal_default' }} "></view>
+			<text class="{{pageTag == 'profile'?'index-item_active':''}}">我的</text>
+		</view>
+	</block>
+
+	<!-- 非客户显示 -->
+	<block wx-if="{{ roleTag != 'customer' }}">
+		<view class="flex-item-avg" hover-class="none" bindtap="toPage" data-path="customer" data-self="{{pageTag}}">
+			<view class="index_nav {{pageTag == 'customer'?'icon-customer_active' : 'icon-customer_default'}}"></view>
+			<text class="{{pageTag == 'customer'?'index-item_active ':''}}">客户</text>
+		</view>
+
+		<view class="flex-item-avg" hover-class="none" bindtap="toPage" data-path="card" data-self="{{pageTag}}">
+			<view class="index_nav {{pageTag == 'card' ? 'icon-personal_active' : 'icon-personal_default' }} "></view>
+			<text class="{{pageTag == 'card'?'index-item_active':''}}">名片</text>
+		</view>
+	</block>
+</view>

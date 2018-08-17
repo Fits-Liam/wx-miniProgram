@@ -1,0 +1,95 @@
+<view class="profile-card">
+    <image class="profile-card__bg" src="../../images/profile/profile_cover.png"></image>
+    <view class="profile-card__avatar">
+        <image class="avatar" src="{{userWechatInfo.headimgurl}}"></image>
+    </view>
+    <view class="profile-card__name">{{userWechatInfo.nickname}}</view>
+    <view class="profile-card__phone" wx:if="{{userWechatInfo.mobile}}">{{userWechatInfo.mobile}}</view>
+</view>
+    
+<view class="profile-section">
+    <view class="profile-section__cell" bindtap="toSubpage" data-path="profileInfo">
+        <view class="profile-section__content">
+            <image class="profile-section__icon" src="../../images/profile/icon_personal.png"></image>
+            个人信息
+        </view>
+        <view class="profile-section__extra">
+            <view class="ui-color_red profile-section__tips" wx:if="{{userWechatInfoTips}}">未完善</view>
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+    <view class="profile-section__cell">
+        <view class="profile-section__content" bindtap="toProject">
+            <image class="profile-section__icon" src="../../images/profile/icon_service.png"></image>
+            服务意向
+        </view>
+        <view class="profile-section__extra">
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+    <view class="profile-section__cell" bindtap="toSubpage" data-path="myAssess">
+        <view class="profile-section__content">
+            <image class="profile-section__icon" src="../../images/profile/icon_assess.png"></image>
+            自测评估
+        </view>
+        <view class="profile-section__extra">
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+    <view class="profile-section__cell">
+        <view class="profile-section__content">
+            <image class="profile-section__icon" src="../../images/profile/icon_download.png"></image>
+            文件下载
+        </view>
+        <view class="profile-section__extra">
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+    <view class="profile-section__cell" bindtap="toBrowsingHistory">
+        <view class="profile-section__content">
+            <image class="profile-section__icon" src="../../images/profile/icon_record.png"></image>
+            浏览记录
+        </view>
+        <view class="profile-section__extra">
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+</view>
+<view class="profile-section">
+    <view class="profile-section__cell" bindtap="toSubpage" data-path="myConsults">
+        <view class="profile-section__content">
+            <image class="profile-section__icon" src="../../images/profile/icon_consultant.png"></image>
+            专属顾问
+        </view>
+        <view class="profile-section__extra">
+            <block wx:if="{{myConsults.total !=0 }}">
+                <image class="profile-section__avatar" wx:for="{{myConsults}}" wx:key="{{item.wx_id}}" src="{{item.headimgurl}}"></image>
+            </block>
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+    <view class="profile-section__cell" bindtap="toSchedule">
+        <view class="profile-section__content">
+            <image class="profile-section__icon" src="../../images/profile/icon_progress.png"></image>
+            服务进度
+        </view>
+        <view class="profile-section__extra">
+            <!-- <view class="ui-color_gary profile-section__tips">您的服务进度有更新</view> -->
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+    <view class="profile-section__cell">
+        <view class="profile-section__content">
+            <image class="profile-section__icon" src="../../images/profile/icon_phone.png"></image>
+            客服电话
+        </view>
+        <view class="profile-section__extra" bindtap="callPhone" data-number="4000-851-851">
+            4000-851-851
+        </view>
+    </view>
+</view>
+
+<!-- 底部导航 -->
+<view class="m-bottom-nav">
+    <fix-bottom-nav role-tag="{{userRole}}" page-tag="{{pageId}}" msg-tips="{{msgTips}}"></fix-bottom-nav>
+</view>

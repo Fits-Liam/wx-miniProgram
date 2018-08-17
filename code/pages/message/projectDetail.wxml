@@ -1,0 +1,34 @@
+<view class="layout">
+	<view class="container bg-white font32 cl-333">
+		<view class="title">联系信息</view>
+		<view class="item-content">
+			<view>
+				<text class="cl-999">您的姓名：</text>
+				<text>{{ intent_detail.username }}</text>
+			</view>
+			<view class="mt-2">
+				<text class="cl-999">联系手机：</text>
+				<text>{{ intent_detail.mobile }}</text>
+			</view>
+		</view>
+		<view class="title">意向内容</view>
+		<view class="item-content">{{ intent_detail.content }}</view>
+		<view class="title">您的留言</view>
+		<view class="item-content">{{ intent_detail.message }}</view>
+		<view class="title">提交时间</view>
+		<view class="item-content">{{ intent_detail.created_at }}</view>
+	</view>
+	<view wx:if="{{ read_state != null }}" class="consult_contain bg-white mt-2 font26" >
+		<view class="font32">顾问已读记录</view>
+		<view class="flex-row flex-row-bet flex-valign-center mt-2">
+			<view data-id="{{ consult_wx_id }}" data-path="card/card" bindtap="linkToCard">
+				<view class="avatar in-block" style="background: url({{ intent_detail.consult_info.headimgurl }}) no-repeat center center;background-size: 100% auto;"></view>
+				<view class="in-block ml">
+					<view>{{ intent_detail.consult_info.nickname }}</view>
+					<view class="mt">{{ intent_detail.consult_info.department_name }}</view>
+				</view>
+			</view>
+			<view class="cl-999">{{ intent_detail.updated_at }}</view>
+		</view>
+	</view>
+</view>

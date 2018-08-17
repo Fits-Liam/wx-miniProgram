@@ -1,0 +1,55 @@
+@import "common/customer.wxss";
+
+page{
+    background-color: #fff;
+}
+radio-group{
+    display: flex; align-items: center;
+    width: 100%;
+}
+radio-group label{
+    width: 170rpx;
+}
+.crm-form{
+    display: block;
+    width: 100%; height: 100%;
+    padding: 35rpx 30rpx 140rpx 30rpx;
+    line-height: 1;
+    box-sizing: border-box;
+}
+.crm-form__item{
+    display: flex;
+    margin-bottom: 30rpx;
+    font-size: 32rpx;
+}
+.crm-form__hd{
+    color: #999999; line-height: 84rpx;
+}
+.crm-form__hd_mini{
+    line-height: 44rpx;
+}
+.crm-form__bd{
+    flex: 1;
+    color: #333333;
+}
+.crm-form__input,
+.crm-form__picker{
+    width: 100%; height: 84rpx;
+    padding: 0 20rpx; margin-top: 30rpx;
+    border: 1px solid #C0C0C0;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+}
+.crm-form__input:first-child,
+.crm-form__picker:first-child{
+    margin-top: 0;
+}
+.is-active{
+    color: #C0C0C0;
+}
+.crm-form__picker{
+    display: flex; align-items: center;
+}
+.crm-form__action {
+    padding-top: 70rpx;
+}

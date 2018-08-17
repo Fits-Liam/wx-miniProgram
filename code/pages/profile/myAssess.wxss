@@ -1,0 +1,7 @@
+.assess-section{
+    border-top: 15rpx solid #f2f2f2;
+    background-color: #fff;
+}
+.assess-section .m-contact{
+    padding: 30rpx;
+}

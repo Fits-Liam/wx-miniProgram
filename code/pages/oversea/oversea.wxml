@@ -1,0 +1,47 @@
+<view wx:if="{{ filterState }}" class="m-tabs-mask" catchtouchmove="true" bindtap="bindFilterState"></view> 
+<view class="m-tabs">
+	<scroll-view scroll-x='true' class="m-tabs__scroll">
+		<view class="m-tabs__tab {{ item.id == active_tag ? 'is-active' : ''}}" wx:for="{{country}}" wx:key="id" data-id="{{item.id}}" bindtap="loadCountryInfo">
+			{{item.name}}
+		</view>
+	</scroll-view>
+    <view class="icon-switchnav m-tabs__filter" bindtap="bindFilterState"></view>
+	
+	<scroll-view scroll-y class="m-tabs__srcoll">
+		<view wx:if="{{ filterState }}" class="filter-country">
+			<view class="filter-country__item" wx:for="{{country}}" wx:key="id" data-id="{{item.id}}" bindtap="loadCountryInfo">
+				<image class="filter-country__img" src="{{item.image_src}}"></image>
+				<view>{{item.name}}</view>
+			</view>
+		</view> 
+	</scroll-view>
+</view>
+
+<view class="oversea_contain">
+	<view class="oversea_item relative cl-white bdr_com"  wx:for="{{ project_list }}" wx:key="{{ project_list.id }}" data-eventid="{{ item.id }}" bindtap='skipProject'  style="background: url({{item.image_src}}) no-repeat;background-size:100% auto;">
+		<view class="item_title text-center">{{ item.name }}</view>
+		<view class="item_desc text-center font26">{{ item.advantage }}</view>
+		<view class='absolute bottom-0 bg-white left-0 wd-100 flex-row flex-row-around oversea_item_desc font30 text-center cl-333'>
+			<view class="wd-33">
+				<view class="bold">{{ item.age_require }}</view>
+				<view class="font24 cl-666 mt-sm">年龄要求</view>
+			</view>
+			<view class="wd-33 relative">
+				<view class="fixed_bar_left"></view>
+				<view class="fixed_bar_right"></view>
+				<view class="bold">{{ item.live_require }}</view>
+				<view class="font24 cl-666 mt-sm">居住要求</view>
+			</view>
+			<view class="wd-33">
+				<view class="bold">{{ item.investment_quota }}</view>
+				<view class="font24 cl-666 mt-sm">投资额度</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="oversea_item relative cl-white"  wx:for="{{ subs_project }}" wx:key="{{ item.id }}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}" bindtap='goWebview'  style="background: url({{item.share_img}}) center center no-repeat;background-size:100% 100%;">
+		<view class='absolute bottom-0 bg-white left-0 wd-100 font28 cl-333 subs_artical_desc'>{{ item.title }}</view>
+	</view>	
+
+	<view class="absolute animo-bounce font24" wx-if="{{ project_list == '' }}">{{ tips }}</view>
+</view>

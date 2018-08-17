@@ -1,0 +1,47 @@
+<scroll-view style="height: {{scrollHeight}}px;" scroll-y bindscrolltolower="bindDownLoad" enable-back-to-top="true">
+    <view class="m-empty" wx:if="{{myConsults.total==0}}">
+        <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_assess.png"></image>
+        <view class="m-empty__text">您还没有专属顾问</view>
+    </view>
+
+    <view class="profile-section" wx:else>
+        <view class="m-contact-item" wx:for="{{myConsults.data}}" wx:key="{{item.wx_id}}">
+            <view class="m-contact">
+                <view class="m-contact__avatar" bindtap="toPage" data-path="card/card" data-id="{{item.consult_wx_id}}">
+                    <image class="avatar" src="{{item.headimgurl}}"></image>
+                </view>
+                <view class="m-contact__info">
+                    <view class="m-contact__name">{{item.mg_name}}</view>
+                    <view class="m-contact__row">
+                        {{item.dpt_name}}
+                    </view>
+                    <view class="m-contact__row">
+                        <view class="m-contact__meta" wx:if="{{item.last_contact_time}}">{{item.last_contact_time}}</view>
+                    </view>
+                </view>
+                <view class="m-contact__action">
+                    <view class="m-contact__btn" wx:if="{{item.mg_phone}}">
+                        <view class="ui-icon ui-icon-phone" bindtap="callPhone" data-number="{{item.mg_phone}}"></view>
+                    </view>
+                    <view class="m-contact__btn">
+                        <view class="ui-icon ui-icon-chat" bindtap="startChat" data-id="{{item.consult_wx_id}}" data-name="{{item.mg_name}}"></view>
+                    </view>
+                    <!-- <view class="m-contact__btn">
+                        <view class="ui-icon ui-icon-file"></view>
+                    </view> -->
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 加载提示 -->
+    <view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+        <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+        <view class="m-loading__line"></view>
+    </view>
+</scroll-view>
+<!-- 底部导航 -->
+<view class="m-bottom-nav">
+    <fix-bottom-nav role-tag="{{userRole}}" page-tag="{{pageId}}" msg-tips="{{msgTips}}"></fix-bottom-nav>
+</view>

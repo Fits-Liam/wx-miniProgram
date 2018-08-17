@@ -1,0 +1,30 @@
+<scroll-view class="vh100" scroll-y bindscrolltolower="bindDownLoad" enable-back-to-top="true">
+    <view class="assess-section" wx:if="{{assessData.total>0}}">
+        <view class="m-contact-item" wx:for="{{assessData.data}}" wx:key="id" bindtap="toWebviewNormal" data-url="{{item.questionnaire_url}}">
+            <view class="m-contact">
+                <view class="m-contact__info">
+                    <view>
+                        <view class="m-contact__record">{{item.questionnaire_title}}</view>
+                        <view class="m-contact__row">
+                            <view class="m-contact__meta">{{item.created}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="m-contact__action" bindtap="toWebview" data-url="{{item.questionnaire_url}}">
+                    <view class="ui-color_blue m-contact__remark">查看评估结果</view>
+                    <view class="ui-icon ui-icon-arrow_right_blue m-contact__arrow"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+        <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+        <view class="m-loading__line"></view>
+    </view>
+    <view class="m-empty" wx:if="{{customersData.total==0}}">
+        <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_assess.png"></image>
+        <view class="m-empty__text">您还没有做过评估</view>
+    </view>
+</scroll-view>

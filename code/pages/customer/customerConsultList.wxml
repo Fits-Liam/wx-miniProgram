@@ -1,0 +1,101 @@
+<scroll-view class="vh100" scroll-y bindscrolltolower="bindDownLoad" enable-back-to-top="true">
+    <view class="customer-list">
+        <!-- 标签 -->
+        <view class="m-tabs-title">
+            <view class="m-tabs-title__tab {{ tabType == 1 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='1'>
+                <view>全部</view>
+                <view class="m-tabs-title__num">
+                   <block wx:if="{{readAmount.all_num}}">（{{readAmount.all_num}}人）</block>
+                    <block wx:else>（0人）</block>
+                </view>
+            </view>
+            <view class="m-tabs-title__tab {{ tabType == 2 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='2'>
+                <view>已读</view>
+                <view class="m-tabs-title__num">
+                   <block wx:if="{{readAmount.yes_num}}">（{{readAmount.yes_num}}人）</block>
+                    <block wx:else>（0人）</block>
+                </view>
+            </view>
+            <view class="m-tabs-title__tab {{ tabType == 3 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='3'>
+                <view>未读</view>
+                <view class="m-tabs-title__num">
+                   <block wx:if="{{readAmount.no_num}}">（{{readAmount.no_num}}人）</block>
+                    <block wx:else>（0人）</block>
+                </view>
+            </view>
+            <view class="m-tabs-title__filter">
+               <view class="m-tabs-title__btn" bindtap="openFilterDrawer" data-type="filter">
+                    <image class="m-tabs-title__icon" src="../../images/customer/icon_filter.png"></image>
+                </view>
+            </view>
+        </view>
+        <!-- 内容 -->
+        <view class="m-tabs-content">
+            <block wx:if="{{consultData.total>0}}">
+                <view class="guest-item" wx:for="{{consultData.data}}" wx:key="{{item.id}}" bindtap="toSubpage" data-path="customerConsultDetails" data-id="{{item.id}}">
+                    <view class="guest-card">
+                        <view class="guest-card__avatar">
+                            <image class="avatar" src="{{item.headimgurl}}"></image>
+                        </view>
+                        <view class="guest-card__info">
+                            <view class="guest-card__record">{{item.nickname}}提交了新信息</view>
+                            <view class="guest-card__row">
+                                <view class="guest-card__meta">{{item.created_at}}</view>
+                            </view>
+                        </view>
+                        <view class="guest-card__action">
+                            <view class="m-badge_text m-badge_danger guest-card__tips" wx:if="{{!item.read_at}}">未读</view>
+                            <view class="ui-icon ui-icon-arrow_right guest-hd__arrow"></view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="m-empty">
+                    <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_assess.png"></image>
+                    <view class="m-empty__text">
+                        <block wx:if="{{ tabType == 1 }}">您还没有咨询</block>
+                        <block wx:elif="{{ tabType == 2 }}">您还没有已读咨询</block>
+                        <block wx:elif="{{ tabType == 3 }}">您还没有未读咨询</block>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <!-- 筛选 -->
+        <view class="m-drawer" wx:if="{{drawerDisplay}}" animation="{{animationData}}" catchtouchmove="true">
+            <view class="ui-icon ui-icon-close m-drawer__close" bindtap="closeFilterDrawer"></view>
+            <form class="drawer-filter" bindsubmit="bindFilter" wx:if="{{drawerFilter}}">
+                <view class="drawer-filter__item">
+                    <view class="drawer-filter__hd">提交人姓名：</view>
+                    <view class="drawer-filter__bd">
+                        <input class="drawer-filter__input" name="username"/>
+                    </view>
+                </view>
+                <view class="drawer-filter__item">
+                    <view class="drawer-filter__hd">访问时间：　</view>
+                    <view class="drawer-filter__bd">
+                        <picker mode="date" name="submit_start_date" bindchange="bindDateStart" value="{{dateStart}}">
+                            <view class="drawer-filter__picker">
+                                {{dateStart}}
+                            </view>
+                        </picker>至<picker mode="date" name="submit_end_date" bindchange="bindDateEnd" value="{{dateEnd}}">
+                            <view class="drawer-filter__picker">
+                                {{dateEnd}}
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="drawer-filter__action">
+                    <button class="ui-btn ui-btn_primary" formType="submit">确认</button>
+                </view>
+            </form>
+        </view>
+    </view>
+    
+    <view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+        <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+        <view class="m-loading__line"></view>
+    </view>
+</scroll-view>

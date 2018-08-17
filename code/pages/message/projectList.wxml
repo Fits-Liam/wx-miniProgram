@@ -1,0 +1,16 @@
+<view class="font26 layout">
+
+	<navigator class="list_item bg-white"  url="projectDetail?id={{item.id}}" wx:for="{{ intentionList }}" wx:key="{{ item.id }}">
+		<view class="cl-333 font28">服务意向:</view>
+		<view class="flex-row flex-row-bet flex-valign-center mt">
+			<view class="font32 text_hide">{{ item.content }}</view>
+			<view>
+				<view wx:if="{{ item.read_at == null }}" class="read_state in-block read_state_able">顾问未读</view>
+				<view wx:else class="read_state in-block read_state_disable">顾问已读</view>
+				<view class="in-block ui-icon ui-icon-arrow_right profile-section__arrow ml-2"></view>
+			</view>
+		</view>
+		<view class="cl-999 mt font26">{{ item.created_at }}</view>
+	</navigator>	
+
+</view>

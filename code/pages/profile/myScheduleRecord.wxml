@@ -1,0 +1,27 @@
+<view class="schedule-section">
+    <view class="record-title">
+        <view class="record-title__col">
+            <image class="record-title__icon" src="../../images/profile/icon_record1.png"></image>
+            进度状态变更
+        </view>
+        <view class="record-title__col">
+            <image class="record-title__icon" src="../../images/profile/icon_record2.png"></image>
+            时间
+        </view>
+    </view>
+    <view class="record-item">
+        <view class="record-item__col">已回访</view>
+        <view class="record-item__col">2018-06-01 12:30:00</view>
+    </view>
+    <view class="record-item">
+        <view class="record-item__col">已签约</view>
+        <view class="record-item__col">2018-06-01 12:30:00</view>
+    </view>
+</view>
+
+<view class="m-bottom-bar">
+    <view class="m-bottom-bar__main">
+        <image class="m-bottom-bar__icon" src="../../images/profile/icon_chat.png"></image>
+        咨询顾问
+    </view>
+</view>

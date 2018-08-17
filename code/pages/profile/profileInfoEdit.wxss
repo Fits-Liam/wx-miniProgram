@@ -1,0 +1,53 @@
+/* = Profile Section
+------------------------------------------------------------------------------------ */
+button[disabled]:not([type]){
+    background: none;
+}
+.edit-section{
+    position: relative;
+    margin-top: 15rpx;
+    padding: 50rpx 30rpx;
+    min-height: 600rpx;
+    background-color: #fff;
+    line-height: 1;
+}
+.edit-hd {
+    margin-bottom: 30rpx;
+    font-size: 32rpx;
+}
+.edit-hd__title {
+    padding-top: 30rpx; margin-bottom: 10rpx; font-size: 24rpx; color: #e9c41d; line-height: 33rpx; text-align: center; font-weight: bold;
+}
+.edit-form {
+    padding-bottom: 10rpx;
+}
+.edit-form__cell {
+    display: flex;
+    position: relative;
+    margin-bottom: 25rpx;
+}
+.edit-form__cell .input-text {
+    flex: 1;
+    height: 84rpx;
+    padding: 0 30rpx;
+    border: 2rpx solid #c0c0c0;
+    border-radius: 10rpx;
+    font-size: 32rpx; color: #333;
+    transition: .3s;
+    box-sizing: border-box;
+}
+.edit-form__cell .ui-btn_code{
+    margin-left: 24rpx;
+    border-radius: 10rpx;
+}
+.edit-form__cell_tips {
+    font-size: 28rpx; color: #999;
+}
+.edit-form__action {
+    position: absolute; left: 0; right: 0; bottom: 50rpx;
+    padding: 0 30rpx;
+}
+
+button[disabled]:not([type]){
+    background: none;
+}

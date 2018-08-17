@@ -1,0 +1,22 @@
+<view class="profile-section">
+    <view class="profile-section__cell" bindtap="toEdit" data-type="username">
+        <view class="profile-section__content">
+            真实姓名
+        </view>
+        <view class="profile-section__extra">
+            <view class="ui-color_red profile-section__tips" wx:if="{{!userWechatInfo.username}}">未完善</view>
+            <view wx:else>{{userWechatInfo.username}}</view>
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+    <view class="profile-section__cell" bindtap="toEdit" data-type="mobile">
+        <view class="profile-section__content">
+            手机号码
+        </view>
+        <view class="profile-section__extra">
+            <view class="ui-color_red profile-section__tips" wx:if="{{!userWechatInfo.mobile}}">未完善</view>
+            <view wx:else>{{userWechatInfo.mobile}}</view>
+            <view class="ui-icon ui-icon-arrow_right profile-section__arrow"></view>
+        </view>
+    </view>
+</view>

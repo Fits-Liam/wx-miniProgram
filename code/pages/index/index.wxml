@@ -1,0 +1,165 @@
+<view class="container font28 cl-333">
+	<navigator class="search icon-search" url="/pages/searchfortop/searchfortop" hover-class="none">
+		<input placeholder="关键字" class="top_input" disabled="disabled"/>
+	</navigator>
+	<view class="relative">
+		<swiper 
+			indicator-dots="{{indicatorDots}}"
+			autoplay="{{autoplay}}"
+			interval="{{interval}}"
+			duration="{{duration}}" 
+			indicator-color="#c8c7c6"
+			indicator-active-color="#2CC3CE"
+			>
+			<block wx:for="{{banner_url}}" wx:key="{{item.id}}">
+				<swiper-item data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"   bindtap="goWebview">
+				 	<image src="{{item.share_img}}" class="slide-image" />
+				</swiper-item>
+			</block>
+		</swiper>
+		<view class="absolute animo-bounce font24" wx-if="{{ banner_url == '' }}">{{ banner_tips }}</view>
+	</view>
+	<view class="nation bg-white relative">
+		<navigator class="block_title flex-row flex-row-bet flex-valign-base" url="/pages/oversea/oversea" hover-class="none">
+			<text class="font34 bold">海外移民</text>
+			<text class="cl-999 icon_link more-desc">更多</text>
+		</navigator>
+		<view class="nation_block text-center flex-row flex-row-bet flex-row-wrap"> 
+			<view wx:for="{{oversea_url}}" wx:key="{{nationBlock.id}}" class="nation_item" bindtap='skipToChild' data-id="{{ item.id }}">
+				<image class="nation_item_img" src="{{item.image_src}}"></image>
+				<view class="mt-sm">{{item.name}}</view>
+			</view>
+		</view>
+		<view class="absolute animo-bounce font24" wx-if="{{ oversea_url == '' }}">{{ oversea_tips }}</view>
+	</view>
+
+	<view class="activity bg-white relative">
+		<navigator class="block_title flex-row flex-row-bet flex-valign-base" url="/pages/activity/activity" hover-class="none">
+			<view class="bold flex-row flex-valign-center">
+				<text class="font34">最新活动</text>
+				<view class="icon-new ml mt-px-4"></view>
+			</view>
+			<text class="cl-999 icon_link more-desc">更多</text>
+		</navigator>
+		<scroll-view scroll-x class="activity_slide">
+		 	<view style="padding:50rpx 20rpx;">
+				<view data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}" bindtap="goWebview"
+					class="in-block activity_block bdr_com"
+					wx:for="{{artical_act}}" 
+					wx:key="{{item.id}}" 
+					style="box-shadow:0 10rpx 40rpx 0 #e7e7e7;"
+				>
+					<view class="activity_item wd-100" style="background-image: url({{item.share_img}});"></view>
+					<view class="bg-white activity_block_bot wd-100">
+						<view class="font34 cl-333 text-hidden bold">{{item.title}}</view>
+						<view class="font26 cl-999 text-hidden" style="margin-top:6rpx;">
+							活动时间：{{item.activity_start == null ? '~' : item.activity_start + ' ~ ' }}{{ item.activity_end == null ? '' : item.activity_end }}
+						</view>		
+					</view>
+				</view>	
+			</view>
+			
+		</scroll-view>
+		<view class="absolute animo-bounce font24" wx-if="{{ artical_act == '' }}">{{ artical_act_tips }}</view>
+	</view>
+
+	<view class="education bg-white">
+		<navigator class="block_title flex-row flex-row-bet flex-valign-base" url="/pages/education/education" hover-class="none">
+			<view class="bold flex-row flex-valign-center">
+				<text class="font34">留学教育</text>
+				<view class="icon-hot ml mt-px-4"></view>
+			</view>
+			<text class="cl-999 icon_link more-desc">更多</text>
+		</navigator>
+		<view class="education_block text-center flex-row flex-row-bet flex-valign-center bold font36">
+
+			<view class="educ_item educ-item2 relative" bindtap="toPage" data-path="topic/edu_gpa">
+				<image src="../../images/edu/index-gpa.png"></image>
+				 <view class="educ_item_dect font40">GPA</view>
+				<view class="educ_item_decb">冲刺班</view> 
+			</view>
+
+			<view class="educ_item educ-item3 relative" bindtap="toPage" data-path="topic/edu_art">
+				<image src="../../images/edu/index-art.png"></image>
+				 <view class="educ_item_dect">艺术</view>
+				<view class="educ_item_decb">教育</view> 
+			</view>
+
+			<view class="educ_item educ-item1 relative cl-white " bindtap="toPage" data-path="topic/edu_music">
+				<image src="../../images/edu/index-1v1.png"></image>
+				 <view class="educ_item_dect">音乐</view>
+				<view class="educ_item_decb">教育</view> 
+			</view>
+			
+		</view>
+	</view>
+
+	<view class="investment bg-white">
+		<navigator class="invest_title flex-row flex-row-bet flex-valign-base" url="/pages/invest/invest" hover-class="none">
+			<view class="bold flex-row flex-valign-center">
+				<text class="font34">投资置业</text>
+			</view>
+			<text class="cl-999 icon_link more-desc">更多</text>
+		</navigator>
+		<view class="flex-row flex-row-bet font32 invest_child">
+			<view 
+			wx:for="{{ invest_item }}"
+			wx:key="{{ item.id }}"
+			class="invest_block"
+			bindtap="linkToInvest"
+			data-id="{{ item.id }}"
+			>
+				<image src="{{ item.img_url }}" class="invest_img in-block"></image>
+				<text class="in-block bold invest_text">{{ item.tag_name }}</text>
+			</view>
+		</view>
+	</view>
+
+	<view class="infomation bg-white">
+		<navigator class="block_title flex-row flex-row-bet flex-valign-base" url="/pages/infomation/infomation" hover-class="none">
+			<text class="font34 bold">资讯分享</text>
+			<text class="cl-999 icon_link info-more">全部资讯</text>
+		</navigator>
+		<view class="info-slide_pd">
+			<view class="flex-row flex-row-bet text-center relative font34">
+				<view class="flex-item-avg info-title {{ articalType == 1 ? 'info-nav-active bold' : ''}} " bindtap="switchArtical" data-type='1'>最新</view>
+				<view class="flex-item-avg info-title {{ articalType == 2 ? 'info-nav-active bold' : ''}} " bindtap="switchArtical" data-type='2'>热门</view>
+				<view class="info-slide-bar {{ articalType == 2 ? 'info_slide_active' : ''}}"></view>
+			</view>
+			<view class="info-nav-contain cl-white relative">
+				<view data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"   bindtap="goWebview"
+					wx:for="{{artical_info}}" 
+					wx:key="{{artical_info.id}}"
+					class="info-nav-item relative bdr_com"
+					style="background: url({{item.share_img}}) center center;background-size: 100% 100%;"
+					>
+					<view class="info-item-desc absolute left-0 bottom-0 wd-100">
+						<text class="font34 bold">{{item.title}}</text>
+						<view class="info-item-data font26">
+							<text class="in-block icon-date">{{item.publish_time}}</text>
+							<text class="in-block icon-read">{{item.pv}}</text>
+						</view> 
+					</view>
+				</view>
+				<!-- 动画 animo-bounce -->
+				<view class="font24 text-center" style="margin-top:80rpx;" wx-if="{{ artical_info == '' }}">
+					<image src="../../images/box-display.png" class="search_none_image_box"></image>
+					<view class="font26 cl-999 search_none_desc">还没有文章哦~</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="scroll-botTip flex-row cl-999 flex-row-around flex-valign-center">
+		<view class="scroll-line"></view>
+		<view class="font24">我也是有底线的</view>
+		<view class="scroll-line"></view>
+	</view>
+</view>
+
+<view class="fixedWindow" bindtap="toPage" data-path="profile/myConsults" wx-if="{{userRole == 'customer'}}">
+	<image src="../../images/profile/icon_chat.png" class="fixedWindow_img"></image>
+	<view>咨询</view>
+</view>
+
+<fix-bottom-nav role-tag="{{userRole}}" page-tag="{{pageId}}" msg-tips="{{msgTips}}"></fix-bottom-nav> 

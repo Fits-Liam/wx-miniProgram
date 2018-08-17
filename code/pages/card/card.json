@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "顾问名片",
+    "enablePullDownRefresh": true,
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

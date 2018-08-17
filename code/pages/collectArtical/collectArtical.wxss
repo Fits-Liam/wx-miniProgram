@@ -1,0 +1,48 @@
+.oversea_nav {
+	border-top: 1rpx solid #dbdbdb;
+	border-bottom: 1rpx solid #dbdbdb;
+	padding: 0 30rpx;
+	color:#6B6B6B;
+	overflow-x: hidden;
+	white-space:nowrap;
+	box-sizing: border-box;
+	min-height: 83rpx;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999999;
+}
+
+.oversea_navitem { 
+	border-bottom: 2px solid transparent;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 20rpx 25rpx;
+	text-align: center;
+	transform: scale(0.9);
+	transition: all 0.2s;
+}
+
+.navitem_active {
+	transform: scale(1);
+	color: #2CC3CE;
+	border-bottom: 2px solid #2CC3CE;
+}
+
+.ph-3 {
+	padding: 0 30rpx;
+}
+ 
+.common_contain {
+	margin-top: 20rpx;
+	min-height: 220rpx;
+	padding-bottom: 30rpx;
+} 
+
+.layput_collect {
+	width:37rpx;
+	height:37rpx;
+	float:right;
+	margin-right: 10rpx;
+}

@@ -1,0 +1,129 @@
+<view class="statistics-card">
+    <image class="statistics-card__bg" src="../../images/customer/statistics_cover.png"></image>
+    <view class="statistics-filter">
+        统计日期：
+        <picker class="statistics-filter__picker" mode="date" value="{{dateStart}}" start="{{dateStartLimit}}" end="{{dateEndLimit}}" bindchange="bindDateStart">
+            <view class="picker">
+                {{dateStart}}
+            </view>
+        </picker>至<picker class="statistics-filter__picker" mode="date" value="{{dateEnd}}" start="{{dateStartLimit}}" end="{{dateEndLimit}}" bindchange="bindDateEnd">
+            <view class="picker">
+                {{dateEnd}}
+            </view>
+        </picker>
+        <view class="statistics-filter__btn" bindtap="getTodayAnalysis">统计</view>
+    </view>
+    <view class="statistics-card__cell">
+        <view class="statistics-card__col">
+            <view class="statistics-card__num">{{todayAnalysis.transmits_num}}</view>
+            <view class="statistics-card__type">转发</view>
+        </view>
+        <view class="statistics-card__col">
+            <view class="statistics-card__num">{{todayAnalysis.pv}}</view>
+            <view class="statistics-card__type">浏览</view>
+        </view>
+        <view class="statistics-card__col">
+            <view class="statistics-card__num">{{todayAnalysis.uv}}</view>
+            <view class="statistics-card__type">访客</view>
+        </view>
+        <view class="statistics-card__col">
+            <view class="statistics-card__num">{{todayAnalysis.advice_num}}</view>
+            <view class="statistics-card__type">咨询</view>
+        </view>
+    </view>
+</view>
+
+<view class="statistics-section">
+    <view class="m-tabs-title">
+        <view class="m-tabs-title__tab {{ tabType == 1 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='1'>
+            文章TOP10
+        </view>
+        <view class="m-tabs-title__tab {{ tabType == 2 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='2'>
+            顾客TOP10
+        </view>
+    </view>
+    <view class="m-tabs-content">
+       <block wx:if="{{ tabType == 1 }}">
+            <block wx:if="{{topArticle.length==0}}">
+                <view class="m-empty">
+                    <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_assess.png"></image>
+                    <view class="m-empty__text">此统计周期内没有文章记录</view>
+                </view>
+            </block>
+            <block wx:else>
+                <!-- 标题栏 -->
+                <view class="guest-tips">
+                    此统计周期内阅读量最高的10篇文章
+                </view>
+                <view class="m-article-item"
+                    wx:for="{{topArticle}}"
+                    wx:key="{{item.id}}"
+                    bindtap="toWebview"
+                    data-url="{{item.link_url}}"
+                    data-title="{{item.title}}"
+                    data-img="{{item.share_img}}"
+                    data-id="{{item.id}}">
+                    <view class="m-article-item__thumb">
+                        <image class="m-article-item__img" src="{{item.share_img}}" mode="aspectFill"></image>
+                    </view>
+                    <view class="m-article-item__content">
+                        <view class="m-article-item__title">{{item.title}}</view>
+                        <view class="m-article-item__meta">
+                            <view class="m-article-item__tag">
+                                <view class="ui-icon ui-icon-time_gary"></view>{{item.publish_time}}
+                            </view>
+                            <view class="m-article-item__tag">
+                                <view class="ui-icon ui-icon-view_gary"></view>{{item.sum_pv}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:if="{{ tabType == 2 }}">
+            <block wx:if="{{topCustomer.length==0}}">
+                <view class="m-empty">
+                    <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_assess.png"></image>
+                    <view class="m-empty__text">此统计周期内没有顾客记录</view>
+                </view>
+            </block>
+            <block wx:else>
+                <!-- 标题栏 -->
+                <view class="guest-tips">
+                    此统计周期内访问您次数最多的10名顾客
+                </view>
+                <!-- 数据列表 -->
+                <view class="guest-item" wx:for="{{topCustomer}}" wx:key="{{item.customer_wx_id}}" bindtap="toSubpage" data-path="customerGuestDetails" data-id="{{item.customer_wx_id}}">
+                    <view class="guest-card">
+                        <view class="guest-card__avatar">
+                            <image class="avatar" src="{{item.headimgurl}}"></image>
+                        </view>
+                        <view class="guest-card__info">
+                            <view class="guest-card__name">{{item.nickname}}</view>
+                            <view class="guest-card__row">
+                                <view class="m-badge_text m-badge_fail guest-card__type" wx:if="{{item.ask_times==0}}">未咨询</view>
+                                <view class="m-badge_text m-badge_success guest-card__type" wx:else>已咨询</view>
+                                <view class="m-badge_text m-badge_info guest-card__type" wx:if="{{item.view_times==1}}">首次访问</view>
+                            </view>
+                            <view class="guest-card__row">
+                                <view class="guest-card__meta">访问次数：{{item.view_count}}</view>
+                            </view>
+                        </view>
+                        <view class="guest-card__action">
+                            <!-- <view class="guest-card__btn" wx:if="{{item.mobile}}">
+                                <view class="ui-icon ui-icon-phone" bindtap="callPhone" data-number="{{item.mobile}}"></view>
+                            </view> -->
+                            <view class="guest-card__btn">
+                                <view class="ui-icon ui-icon-chat" bindtap="startChat" data-id="{{item.customer_wx_id}}" data-name="{{item.nickname}}"></view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="guest-source">
+                        <view class="guest-source__hd">客户来源：</view>
+                        <view class="guest-source__bd">{{item.visit_way}}</view>
+                    </view>
+                </view>
+            </block>
+        </block>
+    </view>
+</view>

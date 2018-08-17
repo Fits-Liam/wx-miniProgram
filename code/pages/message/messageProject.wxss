@@ -1,0 +1,156 @@
+.chat_layout {
+	padding: 25rpx 20rpx 30rpx 20rpx;
+}
+
+.chat_submit {
+	padding: 10rpx 40rpx 40rpx 40rpx;
+	border-radius:8rpx;
+	/* box-shadow:14rpx 0 24rpx rgba(112,112,112,0.16); */
+}
+
+.chat_com_title{
+	margin-top: 30rpx; 
+	font-size:40rpx;
+	font-family:PingFang-SC-Bold;
+	color:#2CC3CE;
+}
+
+.chat_com_input{
+	font-size: 32rpx;
+	height: 84rpx;
+	border-radius:10rpx;
+	border:1rpx solid #C0C0C0;
+	padding-left: 30rpx;
+	box-sizing: border-box;
+}
+
+.chat_com_placeholder{
+	color: #999999;
+}
+
+.mt-px-35{
+	margin-top: 35rpx;
+}
+
+.mt-px-25{
+	margin-top: 25rpx;
+}
+
+.mt-2 {
+	margin-top: 20rpx;
+}
+
+.submit_btn {
+	width: 255rpx;
+	height: 84rpx;
+	line-height: 84rpx;
+	border-radius:10rpx;
+	color: #4fc3f7;
+	border: 1rpx solid #4fc3f7;
+}
+
+.chat_title {
+	margin: 35rpx 0;
+}
+
+.chat_title_oversea {
+	margin-bottom: 35rpx;
+}
+
+.wd-50{
+	width: 50%;
+	margin-bottom: 40rpx;
+	height: 50rpx;
+	box-sizing: border-box;
+}
+
+.textarea_style{
+	color: #999999;
+	font-size: 32rpx;
+}
+
+.textarea{
+	border:2rpx solid #C0C0C0;
+	border-radius:10rpx;
+	box-sizing:border-box;
+	padding:20rpx;
+}
+
+.checkbox_input{
+	visibility: hidden;
+	height: 0;
+	min-height:0;
+}
+
+  label{
+	display: block;
+	box-sizing: border-box;
+}  
+
+.pl-px-15{
+	padding-left:15rpx;
+}
+
+.small_avatar {
+	border-radius: 50%;
+	width: 98rpx;
+	height: 98rpx;
+	margin: 0 auto;
+}
+
+.chebox-item {
+	width:33.33%;
+	margin-top:30rpx;
+}
+
+.adv-title{
+	margin: 35rpx 0 10rpx 0;
+}
+
+.self_checkbox {
+	width:44rpx;
+	height:44rpx;
+	margin-right:20rpx;
+}
+
+.self_radio {
+	width:44rpx;
+	height:44rpx;
+}
+
+.mt-sm{
+	margin-top:10rpx;
+}
+
+.checkbox_desc {
+	display: inline-block;
+	vertical-align:-7rpx;
+}
+
+.bot_submit {
+	width:355rpx;
+	height:91rpx;
+	font-size: 34rpx;
+	line-height:91rpx;
+	margin: 70rpx auto 70rpx auto;
+	background:rgba(50,146,255,1);
+	border-radius:14rpx;
+	box-shadow:10rpx 0 16rpx rgba(21,135,181,0.25);
+}
+
+.btn_disabled{
+	border: 1rpx solid #ccc !important;
+	color: #ccc !important;
+}
+
+.text-hide {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	 white-space:nowrap;
+	 width:160rpx;
+}
+
+.project_link {
+	padding:30rpx 40rpx;
+	border-bottom:1rpx solid #D2D2D2;
+}

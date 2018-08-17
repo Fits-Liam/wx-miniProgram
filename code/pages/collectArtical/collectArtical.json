@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "文章收藏列表",
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

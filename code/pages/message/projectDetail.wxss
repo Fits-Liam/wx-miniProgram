@@ -1,0 +1,36 @@
+.layout {
+	padding-top: 15rpx;
+}
+.container {
+	padding: 0 30rpx 50rpx 30rpx;
+}
+.title {
+	padding-top: 40rpx;
+	font-size: 36rpx;
+	color: #2CC3CE;
+	font-weight: 1000;
+}
+.item-content {
+	padding: 30rpx 0;
+	border-bottom: 1rpx solid #E2E2E2;
+}
+.mt {
+	margin-top: 10rpx;
+}
+.mt-2 {
+	margin-top: 20rpx;
+}
+.mt-3 {
+	margin-top: 30rpx;
+}
+.ml {
+	margin-left: 10rpx;
+}
+.consult_contain {
+	padding: 30rpx;
+}
+.avatar{
+	width:98rpx;
+	height:98rpx;
+	border-radius: 50%;
+}

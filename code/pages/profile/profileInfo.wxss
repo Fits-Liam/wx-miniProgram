@@ -1,0 +1,33 @@
+/* = Profile Section
+------------------------------------------------------------------------------------ */
+.profile-section{
+    margin-top: 15rpx;
+    background-color: #fff;
+}
+.profile-section__cell{
+    display: flex; align-items: center;
+    height: 134rpx;
+    padding: 0 30rpx;
+    border-bottom: 1px solid #E2E2E2;
+    font-size: 32rpx; color: #333;
+}
+.profile-section__cell:last-child{
+    border: 0;
+}
+.profile-section__content{
+    display: flex; align-items: center; flex: 1;
+}
+.profile-section__extra{
+    position: relative;
+    display: flex; align-items: center;
+    padding-right: 30rpx;
+    text-align: right;
+}
+.profile-section__tips{
+    font-size: 28rpx; 
+}
+.profile-section__arrow{
+    width: 13rpx;
+    position: absolute; top: 50%; right: 0;
+    transform: translate3d(0,-50%,0);
+}

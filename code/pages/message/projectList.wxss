@@ -1,0 +1,44 @@
+.bold{
+	font-weight: bold;
+}
+
+.layout {
+	padding-top: 15rpx;
+}
+.list_item {
+	padding: 30rpx;
+	border-bottom: 1rpx solid #E2E2E2;
+}
+.mt{
+	margin-top: 10rpx;
+}
+.read_state {
+	width:111rpx;
+	height:43rpx;
+	line-height:43rpx;
+	border-radius:4px;
+	text-align: center;
+	font-size: 24rpx;
+}
+
+.read_state_able {
+	color:white;
+	background:rgba(254,87,87,1);
+}
+
+.read_state_disable {
+	color:white;
+	background:#ccc;
+}
+
+.ml-2{
+	margin-left: 20rpx;
+}
+
+.text_hide{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;	
+	width:530rpx;
+}
+

@@ -1,0 +1,63 @@
+.schedule-section{
+    margin-top: 15rpx;
+    background-color: #fff;
+}
+
+.schedule-item{
+    display: flex;
+    padding: 30rpx;
+    border-bottom: 15rpx solid #ebebeb;
+}
+.schedule-item:last-child{
+    border: 0;
+}
+.schedule-item__bd{
+    flex: 1;
+    padding-right: 40rpx;
+}
+.schedule-item__ft{
+    display: flex; align-items: center;
+    position: relative;
+}
+.schedule-cell{
+    display: flex;
+    min-width: 0;
+    margin-bottom: 30rpx;
+    font-size: 30rpx; line-height: 1;
+}
+.schedule-cell:last-child{
+    margin-bottom: 0;
+}
+.schedule-cell__label{
+    display: flex;
+    width: 180rpx;
+}
+.schedule-cell__content{
+    display: flex; flex-direction: column; flex: 1;
+    position: relative;
+    min-width: 0;
+}
+.schedule-cell__content .m-contact{
+    margin-top: 30rpx;
+}
+.schedule-cell__content .m-contact:first-child{
+    margin-top: 0;
+}
+.schedule-cell__text{
+    margin-top: 15rpx;
+}
+.schedule-cell__text:first-child{
+    margin-top: 0;
+}
+
+
+.schedule-item .m-contact__avatar .avatar{
+    width: 98rpx; height: 98rpx;
+}
+.schedule-item .m-contact__name{
+    font-size: 28rpx;
+}
+.schedule-item .m-contact__row{
+    margin-top: 10rpx;
+    font-size: 24rpx;
+}

@@ -1,0 +1,31 @@
+.schedule-section{
+    margin-top: 15rpx;
+    background-color: #fff;
+}
+
+.record-title{
+    display: flex;
+    padding: 30rpx;
+    border-bottom: 1px solid #E5E5E5;
+    font-size: 32rpx; line-height: 1; color: #25A0D2; text-align: center;
+}
+.record-title__col{
+    display: flex; align-items: center; justify-content: center; flex: 1;
+}
+.record-title__col:last-child{
+    border-left: 1px solid #E5E5E5;
+}
+.record-title__icon{
+    width: 38rpx; height: 28rpx;
+    margin-right: 10rpx;
+}
+
+.record-item{
+    display: flex;
+    padding: 0 30rpx;
+    font-size: 32rpx; line-height: 1; text-align: center;
+}
+.record-item__col{
+    flex: 1;
+    padding: 30rpx 0;
+}

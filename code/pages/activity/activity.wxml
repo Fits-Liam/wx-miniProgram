@@ -1,0 +1,46 @@
+<view wx:if="{{ filterState }}" class="m-tabs-mask" catchtouchmove="true" bindtap="bindFilterState"></view>
+<view class="m-tabs fixed_nav">
+	<scroll-view scroll-x='true' class="m-tabs__scroll">
+		<view class="m-tabs__tab {{ !active_tag ? 'is-active' : ''}}" bindtap="switchCountry" data-country="{{country}}">
+			{{country}}
+		</view>
+		<view class="m-tabs__tab {{ item.city_id == active_tag ? 'is-active' : ''}}" wx:for="{{city}}" wx:key="city_id" bindtap="switchCity" data-id="{{item.city_id}}">
+			{{item.city_name}}
+		</view>
+	</scroll-view>
+    <view class="icon-switchnav m-tabs__filter" bindtap="bindFilterState"></view>
+	
+	<scroll-view scroll-y class="m-tabs__srcoll">
+		<view wx:if="{{ filterState }}" class="filter-area">
+			<view class="filter-area__item" wx:for="{{areas}}" wx:key="country_id">
+				<view class="filter-area__country">
+					<view class="filter-area__tag {{ country == item.country_name && !active_tag ? 'is-active' : ''}}" bindtap="switchCountry" data-country="{{item.country_name}}">{{item.country_name}}</view>
+				</view>
+				<view class="filter-area__city">
+					<view class="filter-area__tag {{ item.city_id == active_tag ? 'is-active' : ''}}" wx:for="{{item.cities}}" wx:key="city_id" bindtap="switchCity" data-id="{{item.city_id}}">{{item.city_name}}</view>
+				</view>
+			</view>
+		</view> 
+	</scroll-view>
+</view>
+
+<view class="relative">
+
+	<view wx:if="{{articalList == ''}}" class="activity-contain">
+		<view  class="font24 cl-999 text-center search_none_contain">
+			<image src="../../images/box-display.png" class="search_none_image_box"></image>
+			<view class="font26 cl-999 search_none_desc">暂无此城市活动信息哦~</view>
+		</view>
+	</view>
+
+	<scroll-view wx:else scroll-y="true" bindscrolltolower="bindDownLoad" scroll-top="{{scrollTop}}" class='activity-contain bg-white' style="height:{{winHeight}}px;box-sizing:border-box;">
+		<view wx:for="{{articalList}}" class="bdr_com" style="margin-top:30rpx;border-radius:20rpx" wx:key="{{item.city_id}}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"  bindtap="goWebview">
+			<view class="search-item" style="background: url({{item.share_img}}) no-repeat;background-size:100% auto;"></view> 
+			<view class="serch-item_desc">
+				<view class="font34 cl-333 text-hidden">{{item.title}}</view>
+				<view class="font26 cl-999 text-hidden" style="margin-top:6rpx;">活动时间：{{item.activity_start == null ? '~' : item.activity_start + ' ~ ' }}{{ item.activity_end == null ? '' : item.activity_end }}</view>
+			</view> 
+		</view>
+	</scroll-view>
+
+</view>

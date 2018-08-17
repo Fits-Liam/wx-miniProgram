@@ -1,0 +1,122 @@
+.oversea_nav {
+	border-top: 1rpx solid #dbdbdb;
+	border-bottom: 1rpx solid #dbdbdb;
+	padding: 0 30rpx;
+	color:#6B6B6B;
+	overflow-x: hidden;
+	white-space:nowrap;
+	box-sizing: border-box;
+}
+
+.oversea_navitem { 
+	border-bottom: 2px solid transparent;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 20rpx 25rpx;
+	text-align: center;
+	transform: scale(0.9);
+	transition: all 0.2s;
+}
+
+.navitem_active {
+	font-weight: bold;
+	transform: scale(1);
+	color: #2CC3CE;
+	border-bottom: 2px solid #2CC3CE;
+}
+
+.oversea_contain {
+	padding: 20rpx 30rpx 30rpx 30rpx;
+}
+
+.oversea_item {
+	margin-top: 30rpx;
+	width: 690rpx;
+	height: 475rpx;
+	border-radius: 20rpx;
+}
+
+.oversea_item_desc {
+	background-color: rgba(255, 255, 255, 1);
+	padding: 18rpx 20rpx;
+	border-radius: 0 0 20rpx 20rpx;
+}
+
+.item_title {
+	font-weight: bold;
+	padding-top: 130rpx;
+	font-size: 48rpx;
+}
+
+.item_desc {
+	margin-top: 20rpx;
+	text-shadow: 5rpx 5rpx 20rpx black;
+}
+
+.assuess_item {
+	width: 690rpx;
+	height: 310rpx;
+	border-radius: 8rpx;
+	margin-top: 50rpx;
+}
+
+.assess_item_desc {
+	background-color: rgba(255, 255, 255, 0.95);
+	padding: 18rpx 20rpx;
+	border-radius: 0 0 8rpx 8rpx;
+	box-shadow: 0 1px 5px 0px #ccc;
+}
+
+.subs_artical_desc {
+	height:107rpx;
+	line-height:107rpx;
+	padding-left:40rpx;
+	border-radius: 0 0 20rpx 20rpx;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.wd-33{
+	width: 33.33%;
+}
+
+.fixed_bar_left {
+	position: absolute;
+	width:2rpx;
+	height: 54rpx;
+	left:0;
+	top:50%;
+	margin-top: -27rpx;
+	background-color: #E5E5E5;
+}
+
+.fixed_bar_right {
+	position: absolute;
+	width:2rpx;
+	height: 54rpx;
+	right:0;
+	top:50%;
+	margin-top: -27rpx;
+	background-color: #E5E5E5;
+}
+
+/* 下拉标签 */
+.filter-country{
+	padding-bottom: 55rpx;
+	font-size: 0;
+	overflow:hidden;
+}
+.filter-country__item{
+	float: left;
+	width: 33%;
+	margin-top: 55rpx;
+	font-size: 28rpx; color: #333; text-align: center;
+}
+.filter-country__img{
+	width: 105rpx; height: 105rpx;
+	margin-bottom: 20rpx;
+	border-radius: 100%;
+	box-shadow: 0px 5px 15px -1px #ccc;
+}

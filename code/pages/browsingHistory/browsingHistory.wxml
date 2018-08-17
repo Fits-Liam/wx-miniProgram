@@ -1,0 +1,33 @@
+<view class="bg-white ph-3">
+	<view class="flex-row flex-row-bet text-center relative wd-100 search-content bg-white">
+		<view class="flex-item-avg info-title {{ searchtag == '' ? 'info-nav-active' : ''}}" bindtap="switchNav" data-type=''>文章</view>
+		<view class="flex-item-avg info-title {{ searchtag == 'activity' ? 'info-nav-active' : ''}}" bindtap="switchNav" data-type='activity'>活动</view>
+		<view class="info-slide-bar {{ searchtag == '' ? '' : 'info_slide_active'}}"></view>
+	</view>
+
+	<view wx-if="{{ artical_item == '' }}" class="font24 cl-999 text-center state_none">
+		<image src="../../images/box-display.png" class="search_none_image_box"></image>
+		<view class="font26 cl-999 search_none_desc">暂无浏览记录哦~</view>
+	</view>
+
+	<scroll-view wx:if="{{ searchtag == 'activity' }}" scroll-y="true" style="box-sizing:border-box;margin-top:100rpx;">
+		<view  class="bdb-ebe search-item-wrap" wx:for="{{artical_item}}" wx:key="{{artical_item.id}}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"   bindtap="goWebview">
+			<view class="search-item" style="background: url({{item.share_img}}) no-repeat;background-size:100% auto;"></view>
+		</view>  
+	</scroll-view>
+	
+
+	<scroll-view wx:else scroll-y="true" style="box-sizing:border-box;margin-top:100rpx;">
+		<view class="edu-item-contain bdb-ebe" wx:for="{{artical_item}}" wx:key="{{item.city_id}}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"  bindtap="goWebview">
+			<view style="background: url({{item.share_img}}) no-repeat;background-size:100% 100%;" class="edu-item-img in-block"></view>
+			<view class='edu-item-desc in-block'>
+				<view class="cl-333 edu-item-desct font30">{{item.title}}</view>
+				<view class="cl-999 font26 edu-item-descb">
+					<text class="in-block icon-date_grey">{{item.publish_time}}</text>
+					<text class="in-block icon-read_grey">{{item.uv}}</text>
+				</view>
+			</view>
+		</view> 
+	</scroll-view>
+
+</view> 

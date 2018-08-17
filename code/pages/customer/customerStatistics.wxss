@@ -1,0 +1,68 @@
+@import "common/customer.wxss";
+
+/* = Statistics Card
+------------------------------------------------------------------------------------ */
+.statistics-card{
+    position: relative;
+    width: 100%; height: 500rpx;
+    padding: 0 30rpx;
+    margin-bottom: 15rpx;
+    line-height: 1;
+    overflow: hidden;
+}
+.statistics-card__bg{
+    position: absolute; left: 0; top: 0; z-index: -1;
+    width: 100%; height: 500rpx;
+}
+.statistics-card__cell{
+    height: 336rpx;
+    background-color: #fff;
+    border-radius: 20rpx;
+    text-align: center;
+    box-shadow: 17rpx 0 27rpx rgba(112,112,112,.17);
+}
+.statistics-card__col{
+    float: left;
+    width: 50%;
+    margin-top: 50rpx;
+}
+.statistics-card__num{
+    font-size: 60rpx; color: #25A0D2; font-weight: 700;
+}
+.statistics-card__type{
+    margin-top: 15rpx;
+    font-size: 26rpx;
+}
+
+.statistics-filter{
+    display: flex; justify-content: space-between;
+    padding: 30rpx 0;
+    font-size: 26rpx; line-height: 60rpx; color: #fff;
+}
+.statistics-filter__picker{
+    width: 170rpx; height: 60rpx;
+    padding-right: 20rpx;
+    background: rgba(0,0,0,.4) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAKCAMAAACKYC6uAAAAQlBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////8IX9KGAAAAFXRSTlMA+0H2efGThH9xaFdMRjo2MOyMiWBXdJzvAAAATklEQVQI103JSRKAIAxE0U4QQZTBoe9/VRepIrxd/4YqFr1CePquQhR6UeEGHJTLdgvMgJcemOzZKAqMwBeYpY3IB1NmvLljkWjbfQXmB/OFAtCJj+1ZAAAAAElFTkSuQmCC') 164rpx center no-repeat;
+    background-size: 16rpx;
+    border-radius: 10rpx;
+    text-align: center;
+}
+.statistics-filter__btn{
+    width: 106rpx; height: 60rpx;
+    background-color: #098DC3;
+    border-radius: 10rpx;
+    font-size: 28rpx; text-align: center;
+}
+
+/* = Statistics Section
+------------------------------------------------------------------------------------ */
+.statistics-section{
+    background-color: #fff;
+    padding: 0 30rpx;
+}
+.statistics-section .m-tabs-title__tab{
+    width: 50%; justify-content: center;
+}
+.statistics-section .m-article-item{
+    padding: 30rpx 0;
+}

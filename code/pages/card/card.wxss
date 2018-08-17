@@ -1,0 +1,118 @@
+.card{
+    border-top: 15rpx solid #f2f2f2;
+    background: rgba(255,255,255,1);
+}
+
+.card-consult{
+    display: flex;
+    padding: 40rpx 30rpx;
+    line-height: 1;
+}
+.card-consult__avatar{
+    position: relative;
+    margin-right: 20rpx;
+}
+.card-consult__avatar .avatar {
+    width: 145rpx; height: 145rpx;
+    border-radius: 50%;
+    will-change: transform;
+}
+.card-consult__edit{
+    position: absolute; right: 0; bottom: 0;
+    width: 53rpx; height: 53rpx;
+}
+.card-consult__info{
+    display: flex; justify-content: center; flex-direction: column; flex: 1;
+}
+.card-consult__action{
+    display: flex; align-items: center;
+}
+.card-consult__name{
+    margin-bottom: 20rpx;
+    font-size: 36rpx;
+}
+.card-consult__title{
+    font-size: 26rpx;
+}
+.card-consult__btn{
+    display: inline-block;
+    padding-right: 15rpx; margin-right: 15rpx;
+    border-right: 1px solid #e5e5e5;
+}
+.card-consult__btn:last-child{
+    padding: 0; margin-right: 0;
+    border: 0;
+}
+.card-consult__status{
+    position: absolute; top: 180rpx; right: 30rpx;
+    width: 180rpx; line-height: 40rpx;
+    background-color: #4eb646;
+    border-radius: 4rpx;
+    font-size: 24rpx; color: #fff; text-align: center;
+}
+.card-consult__status.is-offline{
+    background-color: #a8a8a8;
+}
+.card-desc{
+    padding: 0 30rpx 20rpx 30rpx;
+    font-size: 26rpx; line-height: 39rpx; color: #333;
+}
+
+.card-info {
+    margin-top: 15rpx;
+    background-color: #fff;
+}
+.card-info__more {
+    display: flex; align-items: center; justify-content: center;
+    height: 80rpx;
+    font-size: 28rpx; color: #2CC3CE;
+}
+.card-info__icon {
+    width: 30rpx; height: 17rpx;
+    margin-left: 20rpx;
+    transition: .2s;
+}
+.card-info__icon.is-active{
+    transform:rotate(180deg);
+}
+.card-cell {
+    display: flex;
+    padding: 17rpx 30rpx;
+    border-top: 1px solid #E2E2E2;
+    font-size: 32rpx; line-height: 48rpx;
+}
+.card-cell__label {
+    width: 190rpx;
+    color: #999;
+}
+.card-cell__content {
+    flex: 1;
+    text-align: right;
+}
+.card-cell__content_desc{
+    min-height: 96rpx;
+}
+
+.card-action{
+    margin-top: 20rpx;
+    padding: 20rpx 30rpx;
+    background-color: #fff;
+}
+.card-action__btn{
+    width: 100%;
+    margin-top: 20rpx;
+    font-size: 32rpx;
+}
+.card-action__btn:first-child{
+    margin-top: 0;
+}
+
+.card-post{
+    margin-top: 20rpx;
+    background-color: #fff;
+}
+.card-post__title{
+    padding: 17rpx 0; margin: 0 30rpx;
+    border-bottom: 1px solid #E2E2E2;
+    font-size: 30rpx; line-height: 48rpx; color: #25A0D2; text-align: center;
+}

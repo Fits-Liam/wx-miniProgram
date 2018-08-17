@@ -1,0 +1,79 @@
+<view class="rec-section">
+    <!-- 文章 -->
+    <view wx:if="{{!isPartner}}" class="{{ isAssess ? 'rec-assess' : 'rec-article' }} font28 cl-333" data-url="{{articleDetail.link_url}}" data-title="{{articleDetail.title}}" data-img="{{articleDetail.share_img}}" data-id="{{articleDetail.id}}" bindtap="goWebview">
+        <block wx:if="{{isAssess}}">
+            <image class="rec-assess__img" src="{{articleDetail.share_img}}"></image>
+         </block>
+        <block wx:else>
+             <view class="rec-assess__hd">文章：</view>
+             <view class="rec-assess__bd">{{articleDetail.title}}</view>
+        </block>
+    </view>
+    <block wx:if="{{ !isPartner }}">
+        <!-- 搜索 -->
+        <view class="rec-search">
+            <view class="rec-search__label">推荐给：</view>
+            <input class="rec-search__input" type="search" value="{{inputVal}}" bindinput="inputTyping" bindconfirm="bindSearch" confirm-type="done"/>
+            <view class="rec-search__action" bindtap="bindSearch">搜索</view>
+        </view>
+        <!-- 用户 -->
+        <view class="rec-userlist">
+            <view class="rec-contact rec-contact_title" bindtap="bindSelectAll">
+                <view class="rec-contact__info">向所有人推送</view>
+                <view class="rec-contact__action">
+                    <checkbox-group class="checkbox-radio">
+                        <checkbox checked="{{selectAll}}"/>
+                    </checkbox-group>
+                </view>
+            </view>
+            <view class="rec-contact" wx:for="{{customersData.data}}" wx:key="wx_id" bindtap="bindMultipleChoice" data-id="{{item.wx_id}}" data-index="{{index}}">
+                <view class="rec-contact__avatar">
+                    <image class="avatar" src="{{item.headimgurl}}"></image>
+                </view>
+                <view class="rec-contact__info">{{item.nickname}}</view>
+                <view class="rec-contact__action">
+                    <checkbox-group class="checkbox-radio">
+                        <checkbox checked="{{item.checked}}"/>
+                    </checkbox-group>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{ isPartner }}">
+        <!-- 用户 -->
+        <view class="rec-userlist">
+            <radio-group class="checkbox-radio" bindchange="bindSingleChoice">
+                <label class="rec-contact" wx:for="{{customersData}}" wx:key="wx_id" data-id="{{item.wx_id}}" data-index="{{index}}">
+                    <view class="rec-contact__avatar">
+                        <image class="avatar" src="{{item.headimgurl}}"></image>
+                    </view>
+                    <view class="rec-contact__info">{{item.nickname}}</view>
+                    <view class="rec-contact__action">
+                        <radio value="{{item.wx_id}}"/>
+                    </view>
+                </label>
+             </radio-group>
+        </view>
+    </block>
+    <!-- 空值提示 -->
+    <view class="m-loading" wx:if="{{customersData.total==0}}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text">没有相关客户数据</view>
+        <view class="m-loading__line"></view>
+    </view>
+    <!-- 加载提示 -->
+    <view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+        <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+        <view class="m-loading__line"></view>
+    </view>
+    <!-- 操作 -->
+    <view class="m-bottom-bar">
+        <view class="m-bottom-bar__main">
+            <view class="m-bottom-bar__btn m-bottom-bar__btn_gary" bindtap="toPage" data-path="index/index">返回首页</view>
+            <view wx:if="{{ !isPartner }}" class="m-bottom-bar__btn" bindtap="bindRecommend">确定</view>
+            <view wx:if="{{ isPartner }}" class="m-bottom-bar__btn" bindtap="bindIntroCustomer">确定</view>
+        </view>
+    </view>
+</view>

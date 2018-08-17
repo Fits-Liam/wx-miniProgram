@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "海外移民",
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

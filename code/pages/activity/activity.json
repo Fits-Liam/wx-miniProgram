@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "活动",
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

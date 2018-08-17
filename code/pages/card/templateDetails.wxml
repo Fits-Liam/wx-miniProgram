@@ -1,0 +1,72 @@
+<view class="card">
+    <view class="card-consult">
+        <view class="card-consult__avatar">
+            <image class="avatar" src="{{consultInfo.headimgurl ? consultInfo.headimgurl : '../../images/def_avatar.png'}}"></image>
+        </view>
+        <view class="card-consult__info">
+            <view class="card-consult__name">{{consultInfo.mg_name}}</view>
+            <view class="card-consult__title">{{consultInfo.dpt2_name}}</view>
+            <!-- <view class="card-consult__title">{{consultInfo.dpt1_name}}-{{consultInfo.dpt2_name}}</view> -->
+        </view>
+    </view>
+    <view class="card-desc" wx:if="{{consultInfo.brief_desc}}">
+        {{consultInfo.brief_desc}}
+    </view>
+</view>
+<view class="card-info">
+    <view class="card-info__more" bindtap="getMoreInfo">
+        查看全部资料<image class="card-info__icon {{ showMore ? 'is-active' : '' }}" src="../../images/customer/icon_expand.png"></image>
+    </view>
+    <view class="card-info__expand" wx:if="{{showMore}}">
+        <view class="card-cell">
+            <view class="card-cell__label">工作手机</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.mg_phone}}">{{consultInfo.mg_phone}}</view>
+        </view>
+        <view class="card-cell">
+            <view class="card-cell__label">微信号</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.wx_no}}">{{consultInfo.wx_no}}</view>
+        </view>
+        <view class="card-cell">
+            <view class="card-cell__label">邮箱</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.email}}">{{consultInfo.email}}</view>
+        </view>
+        <view class="card-cell">
+            <view class="card-cell__label">所在地</view>
+            <view class="card-cell__content" wx:if="{{consultInfo.city}}">{{consultInfo.city}}</view>
+        </view>
+    </view>
+</view>
+
+<!-- 顾问推荐 -->
+<view class="card-post" wx:if="{{templateArticle.length > 0}}">
+    <view class="card-post__title">
+        <view class="ui-icon ui-icon-italic"></view> 顾问推荐 <view class="ui-icon ui-icon-italic"></view>
+    </view>
+    <view class="card-article {{item.touchmove ? 'isActive' : ''}}" wx:for="{{templateArticle}}" wx:key="id" data-index="{{index}}" bindtouchstart="bindDelTouchStart" bindtouchmove="bindDelTouchMove">
+        <view class="card-article__thumb">
+            <image class="card-article__img" src="{{item.share_img}}" mode="aspectFill"></image>
+        </view>
+        <view class="card-article__content">
+            <view class="card-article__title">{{item.title}}</view>
+            <view class="card-article__meta">
+                <view class="card-article__tag">
+                    <view class="ui-icon ui-icon-time_gary"></view>{{item.publish_time}}
+                </view>
+                <view class="card-article__tag">
+                    <view class="ui-icon ui-icon-view_gary"></view>{{item.pv}}
+                </view>
+				<image data-id="{{ item.id }}"  src="../../images/moveTop.png" class="move_layout" catchtap="move_artical"></image>
+            </view>
+        </view>
+        <view class="card-del" catchtap="bindDel" data-index="{{index}}" data-id="{{item.id}}">删除</view>
+    </view>
+</view>
+
+<!-- 模板管理 -->
+<view class="card-action">
+    <view class="card-action__tips">向左滑动文章可进行更多操作</view>
+    <view class="card-action__action">
+        <button class="ui-btn ui-btn_primary card-action__btn" bindtap="toTemplateSearch" data-type="editor">修改模板名称</button>
+        <button class="ui-btn ui-btn_primary card-action__btn" bindtap="toTemplateSearch" data-type="add">添加文章</button>
+    </view>
+</view>

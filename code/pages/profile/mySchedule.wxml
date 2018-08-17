@@ -1,0 +1,67 @@
+<view class="schedule-section" wx:if="{{mySchedule}}">
+    <view class="schedule-item" wx:for="{{mySchedule}}" wx:key="customer_id" bindtap="toSubpage" data-path="myScheduleDetails" data-index="{{index}}" wx:for-index>
+        <view class="schedule-item__bd">
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">服务项目：</view>
+                <block wx:if="{{item.customer_sign_contract_list}}">
+                    <view class="schedule-cell__content">
+                        <text class="schedule-cell__text" wx:for="{{item.customer_sign_contract_list}}" wx:key="contract_no">{{item.sign_project}}、</text>
+                    </view>
+                </block>
+                <black wx:else>
+                    <view class="schedule-cell__content">
+                        -
+                    </view>
+                </black>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">服务状态：</view>
+                <view class="schedule-cell__content" wx:if="{{item.customer_status}}">
+                    {{item.customer_status}}
+                </view>
+                <view class="schedule-cell__content" wx:else>
+                   -
+                </view>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">更新时间： </view>
+                <view class="schedule-cell__content">{{item.crm_create_date}}</view>
+            </view>
+            <view class="schedule-cell schedule-cell_consultant">
+                <view class="schedule-cell__label">服务顾问： </view>
+                <view class="schedule-cell__content">
+                    <block wx:if="{{item.staff_name}}">
+                        <view class="m-contact">
+                            <view class="m-contact__avatar" catchtap="toPage" data-path="card/card" data-id="{{item.consult_wx_id}}">
+                                <image class="avatar" src="{{item.headimgurl ? item.headimgurl : '../../images/def_avatar.png'}}"></image>
+                            </view>
+                            <view class="m-contact__info">
+                                <view class="m-contact__name">{{item.staff_name}}</view>
+                                <view class="m-contact__row">{{item.staff_department}}</view>
+                                <view class="m-contact__row">{{item.staff_title}}</view>
+                            </view>
+                            <view class="m-contact__action">
+                                <view class="m-contact__btn" wx:if="{{item.staff_mobile}}">
+                                    <view class="ui-icon ui-icon-phone" catchtap="callPhone" data-number="{{item.staff_mobile}}"></view>
+                                </view>
+                                <view class="m-contact__btn" wx:if="{{item.consult_wx_id}}">
+                                    <view class="ui-icon ui-icon-chat" catchtap="startChat" data-id="{{item.consult_wx_id}}" data-name="{{item.staff_name}}"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        -
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="schedule-item__ft">
+            <view class="ui-icon ui-icon-arrow_right"></view>
+        </view>
+    </view>
+</view>
+<view class="m-empty" wx:else>
+    <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_assess.png"></image>
+    <view class="m-empty__text">您还没有服务项目</view>
+</view>

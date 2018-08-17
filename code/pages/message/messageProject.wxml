@@ -1,0 +1,55 @@
+<view class='chat_layout'>
+	<navigator url="/pages/message/projectList" wx-if="{{ repeatSubmit }}" class="flex-row flex-row-bet flex-valign-center bg-white project_link">
+		<view class="font32">本次意向</view>
+		<view class="font28 cl-999">
+			<text class="in-block">全部意向</text> 
+			<view class="in-block ui-icon ui-icon-arrow_right profile-section__arrow ml"></view>
+		</view>
+	</navigator> 
+	<view class="chat_submit bg-white">
+		<view class="chat_com_title">您的联系信息</view>
+		<input placeholder="真实姓名" bindinput="inputName" placeholder-class="chat_com_placeholder" class="chat_com_input cl-999 mt-px-35"/>
+		<input placeholder="国内手机号" bindinput="inputTel" placeholder-class="chat_com_placeholder" type="number" class="chat_com_input cl-999 mt-px-25"/>
+		<view class="flex-row flex-row-bet mt-px-25">
+			<input placeholder="验证码" bindinput="inputCode" placeholder-class="chat_com_placeholder" type="number" class="chat_com_input cl-999 "/>
+			<view class="pl-px-15">
+				<view class="submit_btn bg-white font32 text-center {{ codeCountdownStart ? 'btn_disabled' : '' }}" bindtap="getVerificationCode">{{codeValue}}</view>
+			</view>
+		</view>
+		<view class="font28 cl-999 mt-2">为保证服务质量，请您填写真实有效的信息，以便我们的服务专员能够联系到您。 </view>
+		<view class="chat_com_title">您的意向内容</view>
+
+		<view class="chat_title cl-333 font40">教育：</view>
+		<checkbox-group bindchange="collect_edu" class="flex-row flex-row-bet  cl-333 flex-row-wrap">
+			<label class="wd-50 font32" wx:for="{{projects[0].names}}" wx:key="{{item}}"><checkbox value="{{item}}" disabled="{{ select_tag == 1 ? true : false }}"  class="self_checkbox in-block"/><text class="checkbox_desc">{{item}}</text></label>
+		</checkbox-group> 
+		<view class="cl-333 font40 chat_title_oversea">移民：</view>
+		<checkbox-group bindchange="collect_move" class="flex-row flex-row-bet  cl-333 flex-row-wrap"> 	
+			<label class="wd-50 font32" wx:for="{{projects[1].names}}" wx:key="{{item}}"><checkbox value="{{item}}" disabled="{{ select_tag == 2 ? true : false }}"  class="self_checkbox in-block"/><text class="checkbox_desc">{{item}}</text></label>
+		</checkbox-group> 
+
+		<view class="cl-333 font40 chat_title_oversea">您的留言：</view>
+		<textarea placeholder-class="textarea_style" bindinput="inputLeaveMsg"  class="font32 cl-999 wd-100 textarea" placeholder="您可以描述您的需求和问题，我们的专业顾问将为您详细解答。" />
+
+		<block wx-if="{{ repeatSubmit }}">
+			<view class="cl-333 font40 adv-title">发送给您的顾问：</view>
+			<radio-group class="radio-group" bindchange="selectConsult" class="flex-row flex-row-wrap font26 cl-333">
+				<label class="radio chebox-item flex-row flex-row-around flex-valign-center" wx:for="{{adv_items}}" wx:key="{{item.consult_wx_id }}" data-name="{{item.nickname}}" bindtap="getConsult">
+					<radio value="{{item.consult_wx_id}}" name="{{ item.nickname }}" class="self_radio"/>
+					<view class="text-center">
+						<view class="small_avatar" data-id="{{item.consult_wx_id}}" data-path="card/card" bindtap="linkToCard" style="background:url('{{item.headimgurl}}') no-repeat center center;background-size:100% auto;"></view>
+						<view class="font28 mt-sm text-hide">{{item.nickname}}</view>
+						<view class="text-hide">{{item.dpt_name}}</view> 
+						<view>{{item.role_tye}}</view>
+					</view>
+				</label>
+			</radio-group>
+		</block>
+	</view>
+
+
+	<form report-submit bindsubmit="submitUserInfo">
+		<button class="bot_submit text-center cl-white" formType="submit">提交</button> 
+	</form>
+	
+</view>

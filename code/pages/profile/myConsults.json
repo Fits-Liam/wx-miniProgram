@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "专属顾问",
+    "usingComponents": {
+        "fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+    }
+}

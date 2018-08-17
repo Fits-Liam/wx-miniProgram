@@ -1,0 +1,6 @@
+{
+    "enablePullDownRefresh": true,
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}

@@ -1,0 +1,26 @@
+page{
+    display: flex; align-items: center; justify-content: center;
+    height: 100%;
+}
+.authorize{
+    width: 80%;
+    padding: 60rpx 40rpx;
+    font-size: 34rpx; text-align: center;
+    background: rgba(255,255,255,1);
+    border-radius: 8rpx;
+    box-shadow: 14rpx 0 24rpx rgba(112,112,112,0.16);
+}
+.authorize__title{
+    margin-bottom: 40rpx;
+}
+.authorize__btn{
+    height: 90rpx;
+    background: rgba(50,146,255,1);
+    border-radius: 14rpx;
+    box-shadow: 10rpx 0 16rpx rgba(21,135,181,0.25);
+    color: #fff;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.authorize__btn::after{
+    border: none;
+} 

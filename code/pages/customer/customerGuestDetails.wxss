@@ -1,0 +1,8 @@
+@import "common/customer.wxss";
+
+/* = Customer Section
+------------------------------------------------------------------------------------ */
+.customer-details{
+    padding: 0 30rpx 100rpx 30rpx; margin-top: 15rpx;
+    background-color: #fff;
+}

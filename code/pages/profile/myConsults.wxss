@@ -1,0 +1,12 @@
+.profile-section{
+    border-top: 15rpx solid #f2f2f2;
+    background-color: #fff;
+}
+.profile-section .m-contact{
+    padding: 35rpx 30rpx;
+}
+
+/* 样式覆盖 */
+.m-contact__avatar .avatar{
+    width: 116rpx; height: 116rpx;
+}

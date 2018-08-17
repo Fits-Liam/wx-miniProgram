@@ -1,0 +1,36 @@
+<view class="edit-section">
+    <form bindsubmit="formSubmit">
+        <block wx:if="{{ queryType == 'username' }}">
+            <view class="edit-hd">您的姓名</view>
+            <view class="edit-form">
+                <view class="edit-form__cell">
+                    <input class="input-text" name="username" placeholder="请输入" />
+                </view>
+                <view class="edit-form__cell edit-form__cell_tips">
+                    为保证服务进度查询的准确性，请填写您的真实姓名
+                </view>
+            </view>
+            <view class="edit-form__action">
+                <button class="ui-btn ui-btn_primary" formType="submit">保存</button>
+            </view>
+        </block>
+        <block wx:if="{{ queryType == 'mobile' }}">
+            <view class="edit-hd">您的手机号</view>
+            <view class="edit-form">
+                <view class="edit-form__cell">
+                    <input class="input-text" name="mobile" placeholder="请输入" value="{{mobileValue}}" bindinput="inputTyping" />
+                </view>
+                <view class="edit-form__cell edit-form__cell_tips">
+                    为保证服务进度查询的准确性，请填写您的真实手机号
+                </view>
+                <view class="edit-form__cell">
+                    <input class="input-text" name="mobile_code" placeholder="验证码" />
+                    <button class="ui-btn ui-btn_code {{ codeCountdownStart ? 'is-disabled' : '' }}" bindtap="getVerificationCode">{{codeValue}}</button>
+                </view>
+            </view>
+            <view class="edit-form__action">
+                <button class="ui-btn ui-btn_primary" formType="submit">保存</button>
+            </view>
+        </block>
+    </form>
+</view>

@@ -1,0 +1,14 @@
+@import "common/customer.wxss";
+
+/* = Customer Section
+------------------------------------------------------------------------------------ */
+.customer-list{
+    padding: 0 30rpx;
+    border-top: 15rpx solid #f2f2f2;
+    background-color: #fff;
+}
+
+radio-group{
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%;
+}

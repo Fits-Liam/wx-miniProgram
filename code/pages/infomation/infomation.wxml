@@ -1,0 +1,58 @@
+<!-- <view class="search-contain bg-white bdb-ebe">
+	 <view class="clearfix">
+		<view class="icon-search search-wrap">
+			<input placeholder="关键字" class="search_input" />
+		</view>
+		<view class="search-btn font32 cl-333">搜索</view>
+	</view> 
+</view> -->
+
+<view wx:if="{{ filterState }}" class="m-tabs-mask" catchtouchmove="true" bindtap="bindFilterState"></view>
+<view class="m-tabs m-tabs_between wd-100 top-0 left-0" style="position:fixed;">
+	 <view class="m-tabs__scroll" bindtap="switchNav">
+		<view class="m-tabs__tab {{ active_tag == '1' ? 'is-active' : ''}}" data-tag="1">最新资讯</view>
+		<view class="m-tabs__tab {{ active_tag == '2' ? 'is-active' : ''}}" data-tag="2">热门资讯</view>
+		<view class="m-tabs__tab {{ active_tag == '0' ? 'is-active' : ''}}" data-tag="0">全部</view>
+		<view class="m-tabs__tab {{ active_tag == '3' ? 'is-active' : ''}}" data-tag="3">文章标签</view>
+	</view>
+	<!-- 文章标签html -->
+	<scroll-view scroll-y class="m-tabs__srcoll">
+		<view wx:if="{{ filterState }}" class="filter-area">
+	        <view class="filter-area__item" wx:for="{{articleType}}" wx:key="tool_type_id">
+	            <view class="filter-area__hd">{{item.parent_name}}</view>
+	            <view class="filter-area__bd">
+					<checkbox-group name="{{item.parent_tag_id}}">
+						<label wx:for="{{item.sub_tags}}" wx:key="{{ item.id }}" bindtap="checkboxChange" data-id="{{ item.id }}">
+							<checkbox value="{{item.id}}"/>{{item.name}}
+						</label>
+					</checkbox-group>
+	            </view>
+	        </view>
+	        <view class="filter-area__action">
+	            <button class="ui-btn ui-btn_primary" bindtap="article_articleTag">确认</button>
+	        </view>
+		</view>
+	</scroll-view>
+	<!-- 文章标签html -->
+</view>
+
+<view class="m-empty" wx-if="{{artical_info == ''}}">
+    <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_def.png"></image>
+    <view class="m-empty__text">暂无相关资讯文章哦~</view>
+</view>
+
+<!-- 正文html -->
+<scroll-view wx:else scroll-y="true" class="info_contain bg-white ph-3 wd-100" style="box-sizing:border-box;margin-top:83rpx;">
+	<view class="edu-item-contain bdb-ebe" wx:for="{{artical_info}}" wx:key="{{item.city_id}}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"   bindtap="goWebview">
+		<view style="background: url({{ item.share_img }}) no-repeat;background-size:100% 100%;" class="edu-item-img in-block bdr_com"></view>
+		<view class='edu-item-desc in-block'>
+			<view class="cl-333 edu-item-desct font30">{{ item.title }}</view>
+			<view class="cl-999 font26 edu-item-descb">
+				<text class="in-block icon-date_grey">{{ item.publish_time }}</text>
+				<text class="in-block icon-read_grey">{{ item.pv }}</text>
+				<image data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ userRole != 'customer' }}" src="{{ item.favorite_id == null ? '../../images/uncollect.png' : '../../images/collected.png' }}" class="layput_collect" catchtap="collect_artical"></image>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+<!-- 正文html -->

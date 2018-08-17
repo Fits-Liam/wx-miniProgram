@@ -1,0 +1,118 @@
+<view class="schedule-tips">仅供参考，详情请咨询专属顾问</view>
+<view class="schedule-section">
+    <view class="schedule-details">
+        <view class="schedule-details__bd">
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">客户姓名： </view>
+                <view class="schedule-cell__content">{{mySchedule.customer_name}}</view>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">手机号码：</view>
+                <view class="schedule-cell__content">{{mySchedule.customer_mobile}}</view>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">服务项目：</view>
+                <block wx:if="{{mySchedule.customer_sign_contract_list}}">
+                    <view class="schedule-cell__content">
+                        <text class="schedule-cell__text" wx:for="{{mySchedule.customer_sign_contract_list}}" wx:key="contract_no">{{item.sign_project}}</text>
+                    </view>
+                </block>
+                <black wx:else>
+                    <view class="schedule-cell__content">
+                        -
+                    </view>
+                </black>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">服务状态：</view>
+                <view class="schedule-cell__content">
+                    <view class="schedule-subcell">
+                        <view class="schedule-subcell__bd" wx:if="{{mySchedule.customer_status}}">
+                            {{mySchedule.customer_status}}
+                        </view>
+                        <view class="schedule-subcell__bd" wx:else>
+                           -
+                        </view>
+                        <!-- <view class="schedule-subcell__ft" bindtap="toSubpage" data-path="myScheduleRecord">
+                            进度记录<view class="ui-icon ui-icon-arrow_right_blue schedule-details__arrow"></view>
+                        </view> -->
+                    </view>
+                </view>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">更新时间：</view>
+                <view class="schedule-cell__content">{{mySchedule.crm_create_date}}</view>
+            </view>
+            <view class="schedule-cell schedule-cell_consultant">
+                <view class="schedule-cell__label">服务顾问： </view>
+                <view class="schedule-cell__content">
+                    <block wx:if="{{mySchedule.staff_name}}">
+                        <view class="m-contact">
+                            <view class="m-contact__avatar" catchtap="toPage" data-path="card/card" data-id="{{mySchedule.consult_wx_id}}">
+                                <image class="avatar" src="{{mySchedule.headimgurl ? mySchedule.headimgurl : '../../images/def_avatar.png'}}"></image>
+                            </view>
+                            <view class="m-contact__info">
+                                <view class="m-contact__name">{{mySchedule.staff_name}}</view>
+                                <view class="m-contact__row">{{mySchedule.staff_department}}</view>
+                                <view class="m-contact__row">{{mySchedule.staff_title}}</view>
+                            </view>
+                            <view class="m-contact__action">
+                                <view class="m-contact__btn" wx:if="{{mySchedule.staff_mobile}}">
+                                    <view class="ui-icon ui-icon-phone" bindtap="callPhone" data-number="{{mySchedule.staff_mobile}}"></view>
+                                </view>
+                                <view class="m-contact__btn" wx:if="{{mySchedule.consult_wx_id}}">
+                                    <view class="ui-icon ui-icon-chat" bindtap="startChat" data-id="{{mySchedule.consult_wx_id}}" data-name="{{mySchedule.staff_name}}"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        -
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- <view class="schedule-details">
+        <view class="schedule-details__bd">
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">合同编号：</view>
+                <view class="schedule-cell__content">外（沪）/【2018】01120</view>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">签约人姓名： </view>
+                <view class="schedule-cell__content">杨鹤鸣</view>
+            </view>
+            <view class="schedule-cell">
+                <view class="schedule-cell__label">签约顾问：</view>
+                <view class="schedule-cell__content">Karen</view>
+            </view>
+        </view>
+    </view>
+    <view class="schedule-details">
+        <view class="schedule-cell">
+            <view class="schedule-cell__label">文案资料： </view>
+            <view class="schedule-cell__content">
+                <view class="schedule-subcell">
+                    <view class="schedule-subcell__bd">1. 短发短发的身份撒地方身短发短发的身份撒地方身</view>
+                    <view class="schedule-subcell__ft">
+                        查看<view class="ui-icon ui-icon-arrow_right_blue schedule-details__arrow"></view>
+                    </view>
+                </view>
+                <view class="schedule-subcell">
+                    <view class="schedule-subcell__bd">2. 短发似懂非懂是非得失短发似懂非懂是非得失</view>
+                    <view class="schedule-subcell__ft">
+                        查看<view class="ui-icon ui-icon-arrow_right_blue schedule-details__arrow"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view> -->
+</view>
+
+<view class="m-bottom-bar">
+    <view class="m-bottom-bar__main" bindtap="callPhone" data-number="4000-851-851">
+        <image class="m-bottom-bar__icon" src="../../images/profile/icon_phone_white_gohst.png"></image>
+        客服
+    </view>
+</view>

@@ -1,0 +1,40 @@
+@import "common/customer.wxss";
+
+/* = Customer Section
+------------------------------------------------------------------------------------ */
+.userinfo-section{
+    padding: 0 30rpx; margin-top: 15rpx;
+    background-color: #fff;
+}
+.userinfo-section .guest-card{
+    padding: 30rpx 0;
+}
+
+.userinfo-item{
+    padding: 25rpx 0;
+    border-bottom: 1px solid #E5E5E5;
+    line-height: 1.5;
+}
+.userinfo-item:last-child{
+    border: 0;
+}
+.userinfo-item__title{
+    padding-bottom: 10rpx;
+    font-size: 36rpx; color: #2CC3CE;
+}
+.userinfo-item__cell{
+    display: flex;
+    margin-top: 10rpx;
+    font-size: 32rpx;
+}
+.userinfo-item__label{
+    color: #999;
+}
+
+.userinfo-expand{
+    padding: 35rpx 30rpx; margin-top: 15rpx;
+    background-color: #fff;
+}
+.userinfo-expand .guest-info{
+    margin-top: 0;
+}

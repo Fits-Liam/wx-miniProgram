@@ -1,0 +1,84 @@
+
+<scroll-view class='chat_layout font30 cl-333' scroll-y="true" scroll-top="{{scrollTop}}" style="height: {{winHeight}}px;" scroll-with-animation="true">
+	<view wx:for="{{chat_list}}" wx:key="{{item.id}}" class="{{ item.is_sender == 1 ? 'msg_contain_r' : 'msg_contain_l' }}">
+		<view class="chat_time">{{ util.sub_time(item.created_at) }}</view>
+		<view class="flex-row {{ item.is_sender == 1 ? 'msg_item_r flex-row-end' : 'msg_item_l flex-row-start' }}">
+
+			<!-- 消息类型 - 意向跳转 -->
+			<navigator wx:if="{{ item.type == 1 }}" class="msg_text {{ item.is_sender == 1 ? 'msg_text_r msg_align_r' : 'msg_text_l msg_align_l' }}" url="{{ item.src_link }}" hover-class="none">
+				<view style="text-decoration:underline;">意向填写></view>
+				<view class="mt font24 cl-999">{{ item.content }}</view>
+			</navigator>
+
+			<!-- 消息类型 - 顾问文章推荐 -->
+			<view wx:elif="{{ item.type == 3 }}"  
+				data-url="{{item.src_link}}" 
+				data-title="{{item.content}}" 
+				data-img="{{item.cover_src}}"
+				data-id="{{item.id}}" 
+				class="msg_text {{ item.is_sender == 1 ? 'msg_text_r msg_align_r' : 'msg_text_l msg_align_l' }}" 
+				bindtap="goWebview"
+			>
+				<view>{{ item.content}}</view> 
+				<view class="font24 cl-999 mt flex-row flex-row-bet flex-valign-center">
+					<view>顾问推荐</view>
+					<view class="msg_type3" style="background:url({{item.cover_src}}) no-repeat center center;background-size: 100% 100%;"></view>
+				</view>
+			</view>
+
+			<!-- 消息类型 - 图片消息 -->
+			<view wx:elif="{{ item.type == 4 && item.src_link }}"
+				class="msg_text_img" 
+				data-url="{{ item.src_link }}"
+				
+			>
+				<image src="{{ item.src_link }}"  bindload="loadImgInfo" data-width="{{ images[index].width }}" data-height="{{ images[index].height }}" data-index="{{ index }}" data-url="{{ item.src_link }}" lazy-load="true" mode="aspectFill" bindtap="checkHdImg"></image>
+			</view>
+
+			<!-- 消息类型 - 文字消息 -->
+			<view wx:else class="msg_text {{ item.is_sender == 1 ? 'msg_text_r msg_align_r' : 'msg_text_l msg_align_l' }}"><text selectable="true">{{ item.content }}</text></view>
+
+			<!-- 点击自己头像不作操作 -->
+			<view wx:if="{{ item.is_sender == 1 }}">
+				<view class="msg_avatar_r"  style="background:url({{my_headimg}}) no-repeat center center;background-size: 100% auto;"></view>
+			</view>
+
+			<!-- 点击顾问头像访问名片 -->
+			<view wx:else>
+				<view wx:if="{{ other_role == 1 && userRole == 'customer' }}" data-role="{{other_role}}" class="msg_avatar_l"  style="background:url({{some_headimg}}) no-repeat center center;background-size: 100% auto;" bindtap="linkToCard"  data-path="card/card" data-id="{{ item.sender }}"></view>
+				 <view wx:elif="{{ other_role == 0 && userRole == 'consult'  }}" class="msg_avatar_l" data-role="{{other_role}}" style="background:url({{some_headimg}}) no-repeat center center;background-size: 100% auto;" bindtap="linkToCard"  data-path="customer/customerGuestDetails" data-id="{{ item.sender }}"></view> 
+				 <view wx:else class="msg_avatar_l" data-role="{{other_role}}" style="background:url({{some_headimg}}) no-repeat center center;background-size: 100% auto;"></view>
+			</view>
+
+		</view>
+	</view>
+</scroll-view>
+
+<view class="chat_input_contain font32 flex-row flex-row-bet flex-valign-center">
+	<input class="chat_input" cursor-spacing="10" bindinput='inputKeys' confirm-type="send" bindconfirm="sendMsg" bindfocus="focusDeal" bindblur="lostFocusDeal" value="{{ msg_text }}" />
+	<!-- <image src="../../images/chat_face.png" class="icon_com"></image> -->
+	<form report-submit bindsubmit="uploadFile">
+		<button formType="submit" class="upload_btn"><image src="../../images/chat_doc.png" class="icon_com"></image></button>
+	</form>  
+	<view>
+		<form report-submit bindsubmit="sendMsg">
+			<button formType="submit" class="chat_sumbit">发送</button>
+		</form>  
+	</view>
+</view>
+
+<view wx:if="{{ origin_img_state }}" bindtap="close_originImg" style="background:url({{ origin_img }}) no-repeat center center black;background-size:100% auto;" class="origin_block">
+</view>
+
+<wxs module = "util">
+    var sub_time = function(val) {
+        return val.substring(10);
+    }
+
+	var sub_date = function(val) {
+        return val.substring(0,10);
+    }
+
+    module.exports.sub_date = sub_date;
+	module.exports.sub_time = sub_time;
+</wxs>

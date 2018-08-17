@@ -1,0 +1,22 @@
+<view class="assess-section">
+	<view class="assess-item font28 cl-333" wx:for="{{assessData}}" wx:key="id" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}" bindtap="goWebview">
+         <image class="assess-item__img" src="{{item.share_img}}"></image>
+         <view class="assess-item__desc">
+            已有{{item.has_join_num}}人完成评测
+            <view class="assess-item__rec" wx:if="{{userRole != 'customer'}}" catchtap="toPage" data-id="{{item.id}}" data-type="assess" data-path="recommend/recommend">
+                <view class="ui-icon ui-icon-rec assess-item__icon"></view>推荐给客户
+            </view> 
+        </view> 
+	</view>
+</view>
+<!-- 加载提示 -->
+<view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+    <view class="m-loading__line"></view>
+    <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+    <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+    <view class="m-loading__line"></view>
+</view>
+<!-- 底部导航 -->
+<view class="m-bottom-nav">
+    <fix-bottom-nav role-tag="{{userRole}}" page-tag="{{pageId}}" msg-tips="{{msgTips}}"></fix-bottom-nav>
+</view>

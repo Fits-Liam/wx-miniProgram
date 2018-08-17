@@ -1,0 +1,52 @@
+<!-- 标题修改 -->
+<view class="m-search" wx:if="{{type == 'editor'}}">
+    <view class="ui-icon ui-icon-editor_sm m-search__icon"></view>
+    <input class="m-search__input" type="search" placeholder="输入新名称" value="{{inputVal}}" bindinput="inputTyping" bindconfirm="clickSaveTitle" focus="true"/>
+    <view class="m-search__action" bindtap="clickSaveTitle">保存</view>
+</view>
+
+<!-- 文章搜索 -->
+<scroll-view wx:if="{{type == 'add'}}" style="height: {{scrollHeight}}px;" scroll-y bindscrolltolower="bindDownLoad" enable-back-to-top="true">
+    <!-- 搜索 -->
+    <view class="m-search">
+        <view class="ui-icon ui-icon-search m-search__icon"></view>
+        <input class="m-search__input" type="search" placeholder="请输入要搜索的关键字" value="{{inputVal}}" bindinput="inputTyping" bindconfirm="clickSearch" confirm-type="search" focus="true"/>
+        <view class="m-search__action" bindtap="clickSearch" data-text="searchText">{{ searchText }}</view>
+    </view>
+    <!-- 内容 -->
+    <view class="card-post">
+        <view class="m-article-item {{item.checked? 'is-checked' : ''}}" wx:for="{{article.data}}" wx:key="id" data-id="{{item.id}}" data-index="{{index}}" bindtap="clickChoose">
+            <view class="m-article-item__thumb">
+                <image class="m-article-item__img" src="{{item.share_img}}" mode="aspectFill"></image>
+            </view>
+            <view class="m-article-item__content">
+                <view class="m-article-item__title">{{item.title}}</view>
+                <view class="m-article-item__meta">
+                    <view class="m-article-item__tag">
+                        <view class="ui-icon ui-icon-time_gary"></view>{{item.publish_time}}
+                    </view>
+                    <view class="m-article-item__tag">
+                        <view class="ui-icon ui-icon-view_gary"></view>{{item.pv}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 空值 -->
+    <view class="m-end" wx:if="{{article.total == 0}}">
+        <view class="m-end__line"></view>
+        <view class="m-end__text">抱歉没有找到你要的数据</view>
+        <view class="m-end__line"></view>
+    </view>
+    <!-- 提示 -->
+    <view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+        <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+        <view class="m-loading__line"></view>
+    </view>
+</scroll-view>
+<!-- 底部操作 -->
+<view class="m-bottom-bar" wx:if="{{type == 'add'}}">
+    <view class="m-bottom-bar__main" bindtap="clickSaveArticle">添加到模板</view>
+</view>

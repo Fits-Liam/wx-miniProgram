@@ -1,0 +1,90 @@
+ <view class='chat_item'>
+	<view wx:for="{{chatList}}" wx:key="{{item.key}}" data-name="{{item.nickname}}" data-wxid="{{item.wx_id}}" bindtap="chat_with" class="flex-row flex-row-bet bg-white flex-valign-center bdb-ebe pa-3">
+		<view style="flex: 3;" class="flex-row flex-row-bet flex-valign-center">
+
+			<view class="chat_avata relative" style="background:url({{item.headimgurl?item.headimgurl:'../../images/def_avatar.png'}}) no-repeat center center;background-size:116rpx 116rpx;">
+				<view wx-if="{{ item.unread_num != 0 }}">
+					<view wx-if="{{ msgOrConsult }}" class="chat_msgTips absolute top-0 right-0 text-center cl-white">{{ item.unread_num }}</view>
+				</view>
+			</view>
+
+			<view>
+				<view class="cl-333 font32 bold">{{ item.nickname }}</view>
+				<view  class="cl-999 font28 chat_recent_msg">
+					<view wx-if="{{ item.content == '' || !item.content }}" class="msg_text_over">您还没有咨询消息哦~</view>
+					<view wx-else class="msg_text_over">{{ item.content }}</view>
+				</view>
+			</view>
+
+		</view>
+		<view style="flex: 1;" class="text-right">
+			<navigator wx-if="{{ !msgOrConsult }}" class="chat_btn font26 cl-white text-center" url="/pages/message/messageProject?id={{ item.consult_wx_id }}&name={{ item.nickname }}" hover-class="none">立即咨询</navigator> 
+			<text wx-else class="font26 cl-999">{{ item.unread_num == 0 ? util.sub_date(item.created_at) : util.sub_time(item.created_at) }} </text> 
+		</view>
+	</view>
+</view> 
+
+<view class="activity-contain" wx:if="{{msgEmpty}}">
+	<view  class="font24 cl-999 text-center search_none_contain">
+		<image src="../../images/box-display.png" class="search_none_image_box"></image>
+		<view class="font26 cl-999 search_none_desc">暂无消息哦~</view>
+	</view>
+</view>
+
+<wxs module = "util">
+    var sub_time = function(val) {
+        return val.substring(10);
+    }
+
+	var sub_date = function(val) {
+        return val.substring(0,10);
+    }
+
+    module.exports.sub_date = sub_date;
+	module.exports.sub_time = sub_time;
+</wxs>
+
+<!-- 系统消息暂时不上 -->
+<!-- <view class='chat_item'>
+	<view class="flex-row flex-row-bet bg-white flex-valign-center bdb-ebe pa-3">
+		<view>
+			<view class="chat_avata_notice in-block relative" style="background:url('https://marketing.mofi.com.cn/Public/static/toolArticle/2018-06-15/5b2380bf5776e.jpg') no-repeat center center;background-size:116rpx 116rpx;">
+				<view class="chat_msgTips_notice absolute top-0 right-0 text-center cl-white"></view>
+			</view>
+			<view class="in-block ml-2">
+				<view class="cl-333 font32">帕森斯设计学院导师见面会...  </view>
+				<view class="cl-999 font28 chat_recent_msg">活动消息</view>
+			</view>
+		</view>
+		<view>
+			<text class="font26 cl-999">16:45</text> 
+		</view>
+	</view>
+
+	<view class="flex-row flex-row-bet bg-white flex-valign-center bdb-ebe pa-3">
+		<view>
+			<view class="chat_avata_notice in-block relative" style="background:url('https://marketing.mofi.com.cn/Public/static/toolArticle/2018-06-15/5b2380bf5776e.jpg') no-repeat center center;background-size:116rpx 116rpx;">
+				<view class="chat_msgTips_notice absolute top-0 right-0 text-center cl-white"></view>
+			</view>
+			<view class="in-block ml-2">
+				<view class="cl-333 font32">帕森斯设计学院导师见面会...  </view>
+				<view class="cl-999 font28 chat_recent_msg">系统推荐</view>
+			</view>
+		</view>
+		<view>
+			<text class="font26 cl-999">16:45</text> 
+		</view>
+	</view>
+</view> -->
+
+<!-- 提示 -->
+<view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+    <view class="m-loading__line"></view>
+    <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+    <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+    <view class="m-loading__line"></view>
+</view>
+<!-- 底部导航 -->
+<view class="m-bottom-nav">
+    <fix-bottom-nav role-tag="{{userRole}}" page-tag="{{pageId}}" msg-tips="{{msgTips}}"></fix-bottom-nav>
+</view>

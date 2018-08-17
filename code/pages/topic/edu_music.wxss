@@ -1,0 +1,32 @@
+image{
+    vertical-align: top;
+}
+
+.ph-3 {
+    padding:0 30rpx 30rpx 30rpx;
+}
+
+.edu-item-contain {
+    padding: 30rpx 0;
+}
+.edu-item-img {
+    width: 232rpx;
+    height: 168rpx;
+    border-radius: 8rpx;
+}
+.edu-item-desc {
+    width: 66%;
+    padding-left: 30rpx;
+}
+.edu-item-desct {
+    line-height: 44rpx;
+}
+.edu-item-descb {
+    margin-top: 30rpx;
+}
+.layput_collect {
+	width:37rpx;
+	height:37rpx;
+	float:right;
+	margin-right: 10rpx;
+}

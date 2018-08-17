@@ -1,0 +1,68 @@
+
+<view class="bg-white">
+	<view class="edu-title cl-333 font34 bdb-ebe bold">项目介绍</view>
+	<view class="edu-wrap font28">
+		<view class="education_block text-center flex-row flex-row-bet flex-valign-center">
+			<view class="educ_item educ-item1 relative" bindtap="toPage" data-path="topic/edu_1v1">
+				<image src="../../images/edu/1v1.png" class="educ_item_com educ-item1_img"></image>
+				<view class="educ_item_dect">1V1</view>
+				<view class="educ_item_decb">升学计划</view>
+			</view>
+			<view class="educ_item educ-item2 relative" bindtap="toPage" data-path="topic/edu_gpa">
+				<image src="../../images/edu/gpa.png" class="educ_item_com educ-item2_img"></image>
+				<view class="educ_item_dect">GPA</view>
+				<view class="educ_item_decb">冲刺班</view>
+			</view>
+			<view class="educ_item educ-item3 relative" bindtap="toPage" data-path="topic/edu_art">
+				<image src="../../images/edu/art.png" class="educ_item_com educ-item3_img"></image>
+				<view class="educ_item_dect">艺术</view>
+				<view class="educ_item_decb">教育</view>
+			</view>
+			<view class="educ_item educ-item4 relative" bindtap="toPage" data-path="topic/edu_job">
+				<image src="../../images/edu/rocket.png" class="educ_item_com educ-item4_img"></image>
+				<view class="educ_item_dect">职业</view>
+				<view class="educ_item_decb">加速器</view>
+			</view>
+			<view class="educ_item educ-item5 relative" bindtap="toPage" data-path="topic/edu_music">
+				<image src="../../images/edu/music.png" class="educ_item_com educ-item5_img"></image>
+				<view class="educ_item_dect">音乐</view>
+				<view class="educ_item_decb">教育</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class='font34'>
+	<view class="edu-title cl-333 bdb-ebe bold bg-white">教育资讯</view>
+	<view class="m-tabs">
+		<view class="m-tabs__average">
+		    <view class="m-tabs__tab {{ tabType == 1 ? 'is-active' : ''}}" bindtap="switchArtical" data-type="1">热门</view>
+		    <view class="m-tabs__tab {{ tabType == 2 ? 'is-active' : ''}}" bindtap="switchArtical" data-type="2">最新</view>
+	    </view>
+	</view>
+	<view class="m-tabs-content">
+
+	    <view class="bg-white ph-3">
+	        <view class="info_contain">
+	            <view class="edu-item-contain bdb-ebe" wx:for="{{artical_info}}" wx:key="{{item.city_id}}" data-url="{{item.link_url}}" data-title="{{item.title}}" data-img="{{item.share_img}}" data-id="{{item.id}}"   bindtap="goWebview">
+	                <view style="background: url({{ item.share_img }}) no-repeat;background-size:100% 100%;" class="edu-item-img in-block bdr_com"></view>
+	                <view class='edu-item-desc in-block'>
+	                    <view class="cl-333 edu-item-desct font30">{{ item.title }}</view>
+	                    <view class="cl-999 font26 edu-item-descb">
+	                        <text class="in-block icon-date_grey">{{ item.publish_time }}</text>
+	                        <text class="in-block icon-read_grey">{{ item.pv }}</text>
+	                    </view>
+	                </view>
+	            </view>
+	        </view>
+	    </view>
+
+		<view wx:if="{{artical_info == ''}}" class="activity-contain">
+		<view  class="font24 cl-999 text-center search_none_contain">
+			<image src="../../images/box-display.png" class="search_none_image_box"></image>
+			<view class="font26 cl-999 search_none_desc">暂无此信息哦~</view>
+		</view>
+	</view>
+
+	</view>
+</view>

@@ -1,0 +1,69 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.2",
+	"appid": "wx51532d43831496fd",
+	"projectname": "%E5%A4%96%E8%81%94%E8%B5%84%E8%AE%AF-%E6%9C%AC%E5%9C%B0",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 3,
+			"list": [
+				{
+					"id": 0,
+					"name": "客户访问顾问名片",
+					"pathName": "pages/card/card",
+					"query": "id=3682&templated_id=1",
+					"scene": "1001"
+				},
+				{
+					"id": 1,
+					"name": "强制更新测试",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 2,
+					"name": "渠道注册",
+					"pathName": "pages/index/index",
+					"query": "scene=channel_code%3D1",
+					"scene": "1001"
+				},
+				{
+					"id": 3,
+					"name": "文章注册 - 有mid",
+					"pathName": "pages/webview/webview",
+					"query": "domian=https://marketing.mofi.com.cn/Cms/minappArticle&src=283&mid=160&v=2&title=美国移民EB-1测评&img=https://marketing.mofi.com.cn/Public/static/question/shareimg/2018-06-15/5b237296c4aac.jpg",
+					"scene": "1001"
+				}
+			]
+		}
+	}
+}

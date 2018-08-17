@@ -1,0 +1,227 @@
+<scroll-view class="vh100" scroll-y bindscrolltolower="bindDownLoad" enable-back-to-top="true">
+    <view class="customer-list">
+        <view class="m-tabs-title">
+            <view class="m-tabs-title__tab {{ tabType == 1 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='1'>
+                <view>全部</view>
+                <view class="m-tabs-title__num">
+                   <block wx:if="{{consultAmount.all_num}}">（{{consultAmount.all_num}}人）</block>
+                    <block wx:else>（0人）</block>
+                </view>
+            </view>
+            <view class="m-tabs-title__tab {{ tabType == 2 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='2'>
+                <view>已咨询</view>
+                <view class="m-tabs-title__num">
+                    <block wx:if="{{consultAmount.yes_num}}">（{{consultAmount.yes_num}}人）</block>
+                    <block wx:else>（0人）</block>
+                </view>
+            </view>
+            <view class="m-tabs-title__tab {{ tabType == 3 ? 'is-active' : ''}}" bindtap="switchArtical" data-type='3'>
+                <view>未咨询</view>
+                <view class="m-tabs-title__num">
+                    <block wx:if="{{consultAmount.no_num}}">（{{consultAmount.no_num}}人）</block>
+                    <block wx:else>（0人）</block>
+                </view>
+            </view>
+            <view class="m-tabs-title__filter">
+                <view class="m-tabs-title__btn" bindtap="openFilterDrawer" data-type="sort">
+                    <image class="m-tabs-title__icon" src="../../images/customer/icon_orderby.png"></image>
+                </view>
+                <view class="m-tabs-title__btn" bindtap="openFilterDrawer" data-type="filter">
+                    <image class="m-tabs-title__icon" src="../../images/customer/icon_filter.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="m-tabs-content">
+            <block wx:if="{{customersData.total>0}}">
+                <view class="guest-list" wx:for="{{customersData.data}}" wx:key="{{item.customer_wx_id}}">
+                    <view class="guest-card">
+                        <view class="guest-card__avatar">
+                            <image class="avatar avatar_md" src="{{item.headimgurl}}"></image>
+                        </view>
+                        <view class="guest-card__info">
+                            <view class="guest-card__name">{{item.nickname}}</view>
+                        </view>
+                        <view class="guest-card__action">
+                            <!-- <view class="guest-card__btn" wx:if="{{item.mobile}}">
+                                <view class="ui-icon ui-icon-phone" bindtap="callPhone" data-number="{{item.mobile}}"></view>
+                            </view> -->
+                            <view class="guest-card__btn" wx:if="{{userRole == 'partner'}}" catchtap="toPage" data-type="partner" data-path="recommend/recommend" data-id="{{item.customer_wx_id}}">
+                                <view class="ui-icon ui-icon-rcmd"></view>
+                            </view>
+                            <view class="guest-card__btn">
+                                <view class="ui-icon ui-icon-chat" catchtap="startChat" data-id="{{item.customer_wx_id}}" data-name="{{item.nickname}}"></view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="guest-info" bindtap="toSubpage" data-path="customerGuestDetails" data-id="{{item.customer_wx_id}}">
+                        <view class="guest-info__cell">
+                            <view class="guest-info__col">
+                                <block wx:if="{{item.by_way}}">客户来源：{{item.by_way}}</block>
+                                <block wx:else>客户来源：未知</block>
+                            </view>
+                        </view>
+                        <view class="guest-info__cell">
+                            <view class="guest-info__col">首次访问：{{item.first_view_at}}</view>
+                        </view>
+                        <view class="guest-info__cell">
+                            <view class="guest-info__col">最近访问：{{item.last_view_at}}</view>
+                        </view>
+                        <view class="guest-info__cell">
+                            <view class="guest-info__col">访问次数：{{item.view_count}}次</view>
+                            <view class="guest-info__col">
+                                <black wx:if="{{item.avg_stay_minutes}}">平均停留时长：{{item.avg_stay_minutes}}分钟</black>
+                                <black wx:else>平均停留时长：0分钟</black>
+                            </view>
+                        </view>
+                        <view class="guest-info__cell">
+                            <view class="guest-info__col">阅读文章：{{item.view_article_count}}篇</view>
+                            <view class="guest-info__col">自测评估：{{item.assess_times}}次</view>
+                        </view>
+                        <view class="guest-info__cell">
+                            <view class="guest-info__col">
+                                提交信息：{{item.submit_info_times}}次
+                            </view>
+                            <view class="guest-info__col">
+                                <block wx:if="{{item.call_times}}">拨打电话：{{item.call_times}}次</block>
+                                <block wx:else>拨打电话：0次</block>
+                            </view>
+                        </view>
+                        <view class="guest-info__cell">
+                            <view class="guest-info__col">
+                                <block wx:if="{{item.last_message_at}}">最近聊天：{{item.last_message_at}}次</block>
+                                <block wx:else>最近聊天：0次</block>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="m-empty">
+                    <image class="m-empty__icon m-empty__icon_assess" src="../../images/icon_empty_assess.png"></image>
+                    <view class="m-empty__text">
+                        <block wx:if="{{ tabType == 1 }}">您还没有客户</block>
+                        <block wx:elif="{{ tabType == 2 }}">您还没有已咨询客户</block>
+                        <block wx:elif="{{ tabType == 3 }}">您还没有未咨询客户</block>
+                    </view>
+                </view>
+            </block>
+        </view>
+
+        <view class="m-drawer" wx:if="{{drawerDisplay}}" animation="{{animationData}}" catchtouchmove="true">
+            <view class="ui-icon ui-icon-close m-drawer__close" bindtap="closeFilterDrawer"></view>
+            <view class="drawer-sort" wx:if="{{drawerSort}}">
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">首次访问时间</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="first_view_at"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="first_view_at"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">最近访问时间</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="last_view_at"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="last_view_at"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">平均停留时长</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="avg_stay_minutes"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="avg_stay_minutes"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">客户访问次数</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="view_count"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="view_count"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">阅读文章数量</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="view_article_count"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="view_article_count"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">自测评估数量</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="assess_times"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="assess_times"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">提交信息数量</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="submit_info_times"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="submit_info_times"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">拨打电话次数</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="call_times"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="call_times"></view>
+                    </view>
+                </view>
+                <view class="drawer-sort__item">
+                    <view class="drawer-sort__hd">最近聊天时间</view>
+                    <view class="drawer-sort__bd">
+                        <view class="ui-icon ui-icon ui-icon-sort_desc" bindtap="bindSort" data-sort="0" data-by="last_message_at"></view>
+                        <view class="ui-icon ui-icon ui-icon-sort_asc" bindtap="bindSort" data-sort="1" data-by="last_message_at"></view>
+                    </view>
+                </view>
+            </view>
+            <form class="drawer-filter" bindsubmit="bindFilter" wx:if="{{drawerFilter}}">
+                <view class="drawer-filter__item">
+                    <view class="drawer-filter__hd">微信昵称：</view>
+                    <view class="drawer-filter__bd">
+                        <input class="drawer-filter__input" name="nickname"/>
+                    </view>
+                </view>
+                <view class="drawer-filter__item">
+                    <view class="drawer-filter__hd">微信昵称：</view>
+                    <view class="drawer-filter__bd">
+                        <radio-group name="customer_form">  
+                            <label><radio value="" checked/>不限</label>
+                            <label><radio value="distribute"/>自然流量</label>
+                            <label><radio value="visiting_card"/>名片转发</label>
+                        </radio-group>
+                    </view>
+                </view>
+                <view class="drawer-filter__item">
+                    <view class="drawer-filter__hd">阅读文章：</view>
+                    <view class="drawer-filter__bd">
+                        <input class="drawer-filter__input" name="article_title"/>
+                    </view>
+                </view>
+                <view class="drawer-filter__item">
+                    <view class="drawer-filter__hd">访问时间：</view>
+                    <view class="drawer-filter__bd">
+                        <picker mode="date" name="visit_start_period" bindchange="bindDateStart" value="{{dateStart}}">
+                            <view class="drawer-filter__picker">
+                                {{dateStart}}
+                            </view>
+                        </picker>至<picker mode="date" name="visit_end_period" bindchange="bindDateEnd" value="{{dateEnd}}">
+                            <view class="drawer-filter__picker">
+                                {{dateEnd}}
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="drawer-filter__action">
+                    <button class="ui-btn ui-btn_primary" formType="submit">确认</button>
+                </view>
+            </form>
+        </view>
+    </view>
+    
+    <view class="m-loading" wx:if="{{ !loadingMore || !loadingEnd }}">
+        <view class="m-loading__line"></view>
+        <view class="m-loading__text" hidden="{{loadingMore}}"><view class="m-loading__icon"></view>正在加载</view>
+        <view class="m-loading__text" hidden="{{loadingEnd}}">我也是有底线的</view>
+        <view class="m-loading__line"></view>
+    </view>
+</scroll-view>

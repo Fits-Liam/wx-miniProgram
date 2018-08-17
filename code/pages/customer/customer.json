@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "客户管理",
+    "enablePullDownRefresh": true,
+	"usingComponents": {
+		"fix-bottom-nav": "../../components/fix-bottom-nav/fix-bottom-nav"
+	}
+}
